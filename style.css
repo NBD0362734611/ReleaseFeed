@@ -1,0 +1,143 @@
+    a{
+      color: #333;
+      text-decoration:none;
+    }
+    a:hover{
+	   color:#337ab7;
+	   text-decoration:underline;
+    }
+    div.comment_boxes{
+      position:relative;
+      clear:both;
+    }
+    div.comment_box{
+      position:relative;
+      height: 60px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    div.comment_img{
+      cursor:pointer;
+      float:left;
+      padding-right: 5px;
+    }
+    div.comment_text{
+      position:relative;
+      margin-left: 55px;
+      top:0px;
+      left:0px;
+    }
+    div.comment_body{
+      height: 35px;
+    }
+    div.comment_time{
+      height: 15px;
+    }
+    div.comment_delete:hover{
+      color: red;
+    }
+    div.comment_delete{
+      color: white;
+      cursor:pointer;
+      position:relative;
+      top: -50px;
+      left: 0px;
+      width: 15px;
+      height: 15px;
+    }
+    div.company_info{
+      height: 90px;
+      width: 300px;
+      float:left;
+      padding-left: 10px;
+    }
+    div.article_img_box{
+      float:left;
+      height: 90px;
+      width: 90px;
+    }
+    div.article_img{
+      height: 90px;
+      width: 90px;
+    }
+    div.specific_box{
+    }
+    div.modal-content{
+      font-size: 12px;
+    }
+    div.title{
+      font-size: 18px;
+    }
+    div.article{
+      padding-left: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 10px;
+      border-color:#8899A6;
+      border-style:solid;
+      border-width:1px 0px 0px 0px;
+    }
+    div.input-group{
+      clear: both;
+    }
+    div.comment-btn{
+      cursor:pointer;
+      float: left;
+      font-size: 18px;
+      padding-right: 15px;
+    }
+    div.agood-btn{
+      cursor:pointer;
+      float:left;
+      font-size: 18px;
+      padding-right: 15px;
+    }
+    div.afavorite-btn{
+      cursor:pointer;
+      float:left;
+      font-size: 18px;
+      padding-right: 15px;
+    }
+    div.tool-box{
+      clear: both;
+      color: #8899A6;
+      padding-top: 10px;
+    }
+    div.page-box{
+      padding-left: 100px;
+      padding: 20px;
+      font-size: 24px;
+    }
+    div.comment_time{
+    	color: #8899A6;
+    }
+    div.title{
+    	/*font-weight:bold;*/
+    }
+    div.search-box{
+    }
+    div.push_msg_box{
+      cursor:pointer;
+      font-size: 14px;
+      color: red;
+    }
+    #page-top {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      font-size: 77%;
+    }
+    #page-top a {
+        background: #666;
+        text-decoration: none;
+        color: #fff;
+        width: 50px;
+        padding: 15px 0;
+        text-align: center;
+        display: block;
+        border-radius: 5px;
+    }
+    #page-top a:hover {
+        text-decoration: none;
+        background: #999;
+    }
