@@ -1,0 +1,353 @@
+<?php
+include "header.php";
+require_once "func.php";
+require_once "db_func.php";
+
+if(isset($_GET["page"]) && $_GET["page"] > 0){
+  $page = $_GET["page"];
+}else{
+  $page = 1;
+}
+
+require 'src/facebook.php';
+// Create our Application instance (replace this with your appId and secret).
+$facebook = new Facebook(array(
+  'appId'  => '359372300910736',
+  'secret' => '7ed24755505f8cab44b950aecf72c101',
+));
+if (isset($_GET['mode']) && $_GET['mode'] === 'logout') {
+ $facebook->destroySession();
+ header("location: index.php");
+}
+// Get User ID
+$user = $facebook->getUser();
+if ($user) {
+  try {
+    // Proceed knowing you have a logged in user who's authenticated.
+    $user_profile = $facebook->api('/me');
+    $fid = $user_profile["id"];
+    $uid = $fid;
+    $name = $user_profile["name"];
+    //var_dump($user_profile);
+    
+  } catch (FacebookApiException $e) {
+    error_log($e);
+    $user = null;
+  }
+}
+// Login or logout url will be needed depending on current user state.
+if ($user) {
+  $logoutUrl = $facebook->getLogoutUrl(array('next' => 'index.php?mode=logout'));
+// facebookのセッションを削除
+} else {
+  $loginUrl = $facebook->getLoginUrl(array('scope' => 'publish_stream'));
+}
+if(!isset($uid)){
+  $uid = 0;
+}
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Release Feed</title>
+    <meta charset="utf-8">
+    <title>Release Feed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="imgLiquid-min.js" type="text/javascript"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <?php /*
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <script src="js/npm.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    */ ?>
+    <style type="text/css">
+    div.comment_boxes{
+      position:relative;
+    }
+    div.comment_box{
+      position:relative;
+      height: 55px;
+      clear:both;
+    }
+    div.comment_img{
+      float:left;
+    }
+    div.comment_text{
+      position:relative;
+      top:0px;
+      left:0px;
+    }
+    div.comment_delete{
+      position:relative;
+      top:0px;
+      left:0px;
+    }
+    div.company_info{
+      height: 100px;
+      float:left;
+    }
+    div.article_img_box{
+      float:left;
+    }
+    .article_img{
+      height: 100px;
+      width: 100px;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="span12" style="margin-left: 0px;">
+          <div class="header" align="left" style="margin-left: 0px;">
+            <a href="./index.php"><img src="./img/releasefeed_logo.png" style="width: 200px;"></a>
+              <?php if ($user) : /******************************************************************************************/?>
+                <?php /*<a class="btn btn-large btn-primary" href="<?php echo $logoutUrl ?>">Facebookをログアウト</a>*/?>
+                <!--img class="img-thumbnail" src="https://graph.facebook.com/<?php echo $fid; ?>/picture"-->
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span><?php echo $name;?>
+              <?php else : ?>
+                <a class="btn btn-large btn-primary" href="<?php echo $loginUrl ?>">Facebookでログイン</a>
+              <?php endif;  /***********************************************************************************************/?>
+              <div id="fb-root"></div>
+              <div>
+                <a href="./index.php?page=1"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
+                <a href="./index.php?page=<?php echo $page - 1;?>"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+                <?php echo "page ".$page;?>
+                <a href="./index.php?page=<?php echo $page + 1;?>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+                <a href="./index.php?page=70"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
+              </div>
+            </div><!--div class="header" align="left" style="margin-left: 0px;"-->
+          </div><!--div class="header" align="left" style="margin-left: 0px;"-->
+        </div><!--div class="span12" style="margin-left: 0px;"-->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9" role="main">
+              <?php
+                $nstr = get_nstr($page);
+                $relIDend = 6;
+                $relIDstart[0] = 0;
+                $i = 0;
+                while(strpos ( "$nstr" , '"detail.cfm?relID=',$relIDstart[$i]+1)){
+                  echo "<div class='article'>";
+                  $i++;
+                  $relIDstart[$i] = strpos ( "$nstr" , '"detail.cfm?relID=',$relIDstart[$i-1]+1);
+                  $relID[$i] = substr ("$nstr" , $relIDstart[$i] + 18  , $relIDend );
+                  //echo "記事番号 ".$relID[$i]."<br />";
+                  $prstr = get_prstr($relID[$i]);
+                  $titlename = get_title($relID[$i],$prstr);
+                //タイトル
+                  echo "<div class='title'>";
+                  echo  "<blockquote><a href='http://release.nikkei.co.jp/detail.cfm?relID=".$relID[$i]."' target='_blank'>".$titlename."</a></blockquote>";
+                  echo "</div>";
+                  $cname = get_cname($relID[$i],$prstr);
+                  echo "<div class='company_info'>";
+                //会社名
+                  echo "<div class='company_name'>";
+                  echo  "<span class='glyphicon glyphicon-globe' aria-hidden='true'></span> ".$cname."<br />";
+                  echo "</div>";
+                  $cid = get_cid($relID[$i],$prstr);
+                //株価
+                  echo "<div class='stock_code'>";
+                  echo  "<span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> 株式コード <a href='http://stocks.finance.yahoo.co.jp/stocks/detail/?code=".$cid."'>".$cid."</a><br />";
+                  echo "</div>";
+                  $price = get_stockprice($cid);
+                //株価chart
+                //  echo "<div>";
+                //  echo get_stockchart($cid);
+                //  echo "</div>";
+                  echo "</div>";
+
+                //イメージ
+                  echo "<div class='article_img_box'>";
+                  echo get_img($relID[$i]);
+                  echo "</div>";
+                //詳細
+                  tempfile_popup_btn($titlename,$relID[$i],$i);
+                //コメント
+                  $cids = get_comment($relID[$i],$db_name);
+                  echo "<div class='comment_boxes' id='comment_aid_".$relID[$i]."'>";
+                  while ($cid = mysql_fetch_assoc($cids)){
+                    echo "<div class='comment_box' id='comment_cid_".$cid["cid"]."'>";
+                    echo  "<div class='comment_img'><img src='https://graph.facebook.com/".$cid["uid"]."/picture'class='img-rounded' alt=''></div>";
+                    echo  "<div class='comment_text'>";
+                    echo   "<div class='comment_body'><span id='comment_body_cid_".$cid["cid"]."'>".$cid["comment"]."</span></div>";
+                    echo   "<div class='comment_time'><span style='color:#E4E4E4'><span class='glyphicon glyphicon-time' aria-hidden='true'></span>".$cid["time"]."</span></div>";
+                    echo  "</div>";//comment_text
+                    if($cid["uid"] == $uid){
+                      echo "<div class='comment_delete'><span id='".$cid["cid"]."' class='delete glyphicon glyphicon-remove-circle' aria-hidden='true'></span></div>";
+                    }
+                    echo "</div>";//comment_box
+
+                  }
+                  echo "</div>";//comment_boxes
+                //コメント投稿
+                  echo '
+                    <div class="input-group">
+                      <input type="text" class="form-control" name="'.$relID[$i].'" placeholder="コメント(50字以内)">
+                      <span class="input-group-btn">
+                          <button id="'.$relID[$i].'" class="submit btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                          </button>
+                      </span>
+                    </div>
+                      ';
+                  echo "</div>";// class='article'
+                }
+              ?>
+
+              <div class="footer" align="left">
+                <div>
+                  <a href="./index.php?page=1"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
+                  <a href="./index.php?page=<?php echo $page - 1;?>"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+                    <?php echo "page ".$page;?>
+                  <a href="./index.php?page=<?php echo $page + 1;?>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+                  <a href="./index.php?page=70"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
+                </div>
+              </div><!--div class="footer" align="left"-->
+            </div><!--div class="col-md-9" role="main"-->
+          </div><!--div class="row"-->
+        </div><!--class="container"-->
+        
+
+        <script>
+        /*文字数カウントhttp://www.geekzshu.com/jquery/895
+          $(function(){
+            $("#message").bind("change keyup",function(){
+            var count = $(this).val().length;
+              $("#num").text(count);
+            });
+          });*/
+        </script>
+        <script>
+        /*コメント投稿*/
+          $(document).on("click",'.submit',function() {
+            var aid = this.id;
+            var commentInput = ':text[name="' + aid + '"]';
+            var comment = $(commentInput).val();
+            var uid = <?php echo $uid;?>;
+            postComment(aid,comment,uid);
+          });
+          $(document).on('keypress','.form-control',function (e) {
+            if(e.keyCode == 13) {
+              var aid = this.name;
+              var commentInput = ':text[name="' + aid + '"]';
+              var comment = $(commentInput).val();
+              var uid = <?php echo $uid;?>;
+              postComment(aid,comment,uid);
+              e.preventDefault();
+            }                                               
+          });
+          function postComment(aid,comment,uid){
+            $.ajax({
+                url: 'post_comment.php',
+                type:'POST',
+                dataType: 'json',
+                data : {aid : aid, uid : uid, comment : comment },
+                timeout:10000,
+                success: function(data) {
+                  var commentAreaId = "comment_aid_" + aid;
+                  var element = document.createElement('div'); 
+                  element.id = "comment_cid_" + data.cid;
+                  var deleteBtn = "<span id='" + data.cid + "' class='delete glyphicon glyphicon-remove-circle' aria-hidden='true'></span>"; 
+                  var content = "<img src='https://graph.facebook.com/" + uid + "/picture' class='img-rounded' alt=''>";
+                  var postComment = "<span id='comment_body_cid_" + data.cid + "'>" + comment + "</span>";
+                  element.innerHTML = content + postComment + deleteBtn; 
+                  var objTextarea = document.getElementById(commentAreaId);
+                  objTextarea.appendChild(element);
+                  $('input').val('');
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  alert("エラー");
+                }
+            });
+          }
+        </script>
+        <script>
+        /*コメント削除*/
+          $(document).on("click",'.delete',function() {
+            var cid = this.id;
+            var uid = <?php echo $uid;?>;
+            if(window.confirm('削除しますか？')){
+              $.ajax({
+                  url: 'delete_comment.php',
+                  type:'POST',
+                  dataType: 'json',
+                  data : {cid: cid, uid : uid},
+                  timeout:10000,
+                  success: function(data) {
+                    var id = "comment_cid_" + cid;
+                    document.getElementById(id).remove();
+                  },
+                  error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("エラー");
+                  }
+              });
+            }
+          });
+        </script>
+        <script>
+        /*詳細ポップアップ*/
+          $(document).on("click",'.specific',function() {
+            var aid = this.id;
+            var id = "specific_" + aid; 
+            $.ajax({
+              url: "get_article.php",
+              type:'GET',
+              dataType: 'json',
+              data : {relID : aid},
+              async: false,
+              timeout:10000,
+              success: function(data) {
+                var article = data;
+                var element = document.createElement('div'); 
+                element.id = "article_" + aid;
+                var link = "<a href='http://release.nikkei.co.jp/detail.cfm?relID=" + aid + "'><br>...続きはこちら</a>";
+                element.innerHTML = article + link; 
+                element.style.margin = "20px"; 
+                element.style.height = "550px"; 
+                var objTextarea = document.getElementById(id); 
+                objTextarea.appendChild(element); 
+              },
+              error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("エラー");
+              }
+            });
+          });
+        </script>
+        <script>
+          $(function(){
+            $(".article")
+              .mouseover(function(){
+                $(this).css('background', 'rgb(225, 232, 237)');
+              })
+              .mouseout(function(){
+                $(this).css('background', 'white');
+              })
+          });
+        </script>
+        <script>
+          // $(document).ready(function() {
+            // $(".article_img").imgLiquid({
+            // });
+          // });
+        </script>
+      </div> <!--div class="row-fuluid"-->
+    </div> <!--div class="container"-->
+  </body>
+</html>

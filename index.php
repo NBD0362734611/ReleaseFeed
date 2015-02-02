@@ -1,4 +1,4 @@
- <?php
+<?php //teest
 include "header.php";
 require_once "func.php";
 require_once "db_func.php";

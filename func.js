@@ -344,7 +344,7 @@ var uid = jQuery("#uid").data("id");
 $(window).on("scroll", function() {
   var scrollHeight = $(document).height();
   var scrollPosition = $(window).height() + $(window).scrollTop();
-  if ((scrollHeight - scrollPosition) / scrollHeight == 0 && jQuery("#scroll").data("id") == true) {
+  if ((scrollHeight - scrollPosition) / scrollHeight == 0.00 && jQuery("#scroll").data("id") == true) {
     //ajaxで記事の読み込み
     //とりあえずpageを渡す
     //appendchild で付け足し
