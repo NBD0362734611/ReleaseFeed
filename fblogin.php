@@ -1,8 +1,8 @@
 <?php
 // Create our Application instance (replace this with your appId and secret).
 $facebook = new Facebook(array(
-  'appId'  => '359372300910736',
-  'secret' => '7ed24755505f8cab44b950aecf72c101',
+  'appId'  => '374473096067323',
+  'secret' => 'c9cc243c018d3cda90ef8b44146868fb',
 ));
 if (isset($_GET['mode']) && $_GET['mode'] === 'logout') {
  $facebook->destroySession();
