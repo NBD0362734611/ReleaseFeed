@@ -40,7 +40,6 @@ include "fblogin.php";
         <div class="container">
           <div class="row">
             <div class="col-md-9" id="article_body" role="main">
-              test
               <?php
                 if(isset($_GET["words"]) && $_GET["words"] != ""){
                   echo "<div id=\"scroll\" data-id=\"false\"></div>";
@@ -89,4 +88,4 @@ include "fblogin.php";
       </div> <!--div class="row"-->
     </div> <!--div class="container"-->
   </body>
-</html>
+</html> 
