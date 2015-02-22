@@ -6,7 +6,9 @@ include_once("./func/yahoo_func.php");
 
 
 $article = new Article();
-$article->show(377533);
+for($i=375896;$i<=379371;$i++){
+	$article->show($i);
+}
 
 
 ?>
