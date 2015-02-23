@@ -1,37 +1,37 @@
 <?php
-class Article
+class Release
 {
-  public function show($aid){
+  public function release($aid){
     $data_base = new DataBase;
-    $article_body = $data_base->selectArticle("aid",$aid,1);
+    $release_body = $data_base->select("release","aid",$aid,1);
     $yahoo_finance = new yahooFinance;
-    $stock_Info = $yahoo_finance->getStockInfo($article_body[sid]);
+    $stock_Info = $yahoo_finance->getStockInfo($release_body[sid]);
     
-    echo 
+    return
     "
-    <div class=\"article\" article-id=\"$article_body[aid]\">
-      <span  class=\"article_title\">
-        $article_body[title]
+    <div class=\"release\" release-id=\"$release_body[aid]\">
+      <span  class=\"release_title\">
+        $release_body[title]
       </span>
-      <span class=\"article_company\">
-        $article_body[cname]
+      <span class=\"release_company\">
+        $release_body[cname]
       </span>
-      <span class=\"article_stock_code\">
-        $article_body[sid]
+      <span class=\"release_stock_code\">
+        $release_body[sid]
       </span>
-      <span class=\"article_stock_price\">
+      <span class=\"release_stock_price\">
         $stock_Info[price]
       </span>
-      <div class=\"article_img_box\">
-        <span class=\"article_img\" data-id=\"$article_body[img1]\">
+      <div class=\"release_img_box\">
+        <span class=\"release_img\" data-id=\"$release_body[img1]\">
         </span>
-        <span class=\"article_img\" data-id=\"$article_body[img2]\">
+        <span class=\"release_img\" data-id=\"$release_body[img2]\">
         </span>
-        <span class=\"article_img\" data-id=\"$article_body[img3]\">
+        <span class=\"release_img\" data-id=\"$release_body[img3]\">
         </span>
-        <span class=\"article_img\" data-id=\"$article_body[img4]\">
+        <span class=\"release_img\" data-id=\"$release_body[img4]\">
         </span>
-        <span class=\"article_img\" data-id=\"$article_body[img5]\">
+        <span class=\"release_img\" data-id=\"$release_body[img5]\">
         </span>
       </div>
       <span class=\"post_commnet\">
@@ -65,7 +65,7 @@ class Article
         </div>
       </div>
     </div>
-    ";// class='article'
+    ";// class='release'
 
 
 
