@@ -9,8 +9,7 @@ class DataBase
 {
 	private $db_name  = "CrowdPress";
 
-	public function selectArticle($key,$value,$flg){
-		$table = "article";
+	public function select($table,$key,$value,$flg){
 		$sql = "SELECT * FROM $this->db_name.$table WHERE `flg`= $flg ";
 		$sql .= "AND `$key` = $value";
 		$sql .=";";
