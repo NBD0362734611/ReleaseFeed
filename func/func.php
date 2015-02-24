@@ -1,12 +1,32 @@
 <?php
 class Release
 {
-  public function release($aid){
-    $data_base = new DataBase;
-    $release_body = $data_base->select("release","aid",$aid,1);
-    $yahoo_finance = new yahooFinance;
-    $stock_Info = $yahoo_finance->getStockInfo($release_body[sid]);
+  public function body($rid){
+    $data_base = new DataBase();
+    $release_body = $data_base->select("release","rid",$rid,1);
+    echo($release_body[0]["title"]);
+    echo "<br>";
+    echo($release_body[0]["time"]);
+
+    //$yahoo_finance = new yahooFinance;
+    //$stock_Info = $yahoo_finance->getStockInfo($release_body[sid]);
+
+    $pr_company = $data_base->selectPressRleaseCompany($rid,1);
+    echo "<br>";
+    echo($pr_company);
+
+    $comments = $data_base->selectCommentFromRid($rid,1);
+    foreach ($comments as $comment) {
+      echo "<br>";
+      echo $comment["comment"];
+    }
+
+
+
     
+
+
+    /*
     return
     "
     <div class=\"release\" release-id=\"$release_body[aid]\">
@@ -66,6 +86,7 @@ class Release
       </div>
     </div>
     ";// class='release'
+    */
 
 
 

@@ -12,12 +12,34 @@ class DataBase
 	public function select($table,$key,$value,$flg){
 		$sql = "SELECT * FROM $this->db_name.$table WHERE `flg`= $flg ";
 		$sql .= "AND `$key` = $value";
-		$sql .=";";
-		$results = mysql_db_query($this->db_name, $sql);
+		//$sql .=";";
+		$results = mysql_query($sql);
 		while($result = mysql_fetch_assoc($results)){
-		  	return $result; 
+			$a_result[] = $result;
 		}
+		return $a_result; 
 	}
+
+	public function selectCommentFromRid($rid,$flg){
+		$table = "r_comment";
+		$sql = "SELECT * FROM $this->db_name.$table WHERE `flg`= $flg ";
+		$sql .= "AND `rid` = $rid ";
+		$sql .="ORDER BY  `$table`.`time` ASC ;";
+		$results = mysql_query($sql);
+		while($result = mysql_fetch_assoc($results)){
+		  	$a_result[] = $result;
+		}
+		return $a_result;
+	}
+
+	public function selectPressRleaseCompany($rid,$flg){
+		$prcid_dump = $this->select("release","rid",$rid,$flg);
+		$prcid = $prcid_dump[0]["prcid"];
+		$prcname_dump = $this->select("prcid","prcid",$prcid,1);
+		$prcname = $prcname_dump[0]["prcname"];
+		return $prcname;
+	}
+
 }
 
 
