@@ -30,44 +30,6 @@ p.thumb img{
     position:absolute;
 }
 
-.user-wrapper {
-  position: relative;
-  top: 50px;
-  margin: 3em auto;
-  padding: 0 1em;
-  max-width: 600px;
-}
-
-.my-image {
-  position: relative;
-  background:url("") no-repeat;
-  margin: 0em auto;
-  padding: 5em;
-  max-width: 150px;
-}
-
-.my-profile {
-  position: relative;
-  background: white;
-  margin: 0em auto;
-  padding: 1em;
-  max-width: 600px;
-}
-
-.my-name {
-    margin-bottom: 2em;
-    text-align: center;
-}
-
-.paper-wrapper {
-  position: relative;
-  top: 50px;
-  background: white;
-  margin: 3em auto;
-  padding: 0 1em;
-  max-width: 800px;
-}
-
 .form-wrapper {
   position: relative;
   top: 50px;
