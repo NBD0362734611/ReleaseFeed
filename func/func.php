@@ -3,28 +3,32 @@ class Release
 {
   public function body($rid){
     $data_base = new DataBase();
-    $release_body = $data_base->select("release","rid",$rid,1);
-    echo($release_body[0]["title"]);
-    echo "<br>";
-    echo($release_body[0]["time"]);
+    if($release_body = $data_base->select("release",array( "rid" => $rid , "flg" => 1))){
+      echo($release_body[0]["title"]);
+      $this->br();
+    }
 
     //$yahoo_finance = new yahooFinance;
     //$stock_Info = $yahoo_finance->getStockInfo($release_body[sid]);
 
-    $pr_company = $data_base->selectPressRleaseCompany($rid,1);
-    echo "<br>";
-    echo($pr_company);
+    if($pr_company = $data_base->selectPressRleaseCompany($rid,1)){
+      echo($pr_company);
+      $this->br();
 
-    $comments = $data_base->selectCommentFromRid($rid,1);
-    foreach ($comments as $comment) {
-      echo "<br>";
-      echo $comment["comment"];
+      $flg = ($data_base->select("release",array("rid" => $rid)));
+      echo $flg[0]["flg"];
+      $this->br();
     }
 
+    if($comments = $data_base->selectCommentFromRid($rid,1)){
+      foreach ($comments as $comment) {
+        echo $comment["comment"];
+        $this->br();
 
+      }
+    }
 
-    
-
+    $data_base->update("release",array("a"=>1),array("c"=>2));
 
     /*
     return
@@ -88,9 +92,9 @@ class Release
     ";// class='release'
     */
 
-
-
   }
-}
-
+  private function br(){
+    echo "<br>";
+  } 
+}  
 ?>
