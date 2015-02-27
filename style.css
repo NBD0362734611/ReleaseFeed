@@ -13,7 +13,34 @@
     General Rules
 ----------------------------------------------------------------*/
 
+/*新聞詳細ページ*/
+
+.release1 img {
+    max-width: 300px;
+}
+
+.release-article img {
+    float: left;
+}
+
+p.speech
+{
+    position: relative;
+    width: 100%;
+    text-align: center;
+    line-height: 100px;
+    background-color: #fff;
+    border: 8px solid #666;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    -webkit-box-shadow: 2px 2px 4px #888;
+    -moz-box-shadow: 2px 2px 4px #888;
+    box-shadow: 2px 2px 4px #888;
+}
+
 /*マイページ*/
+
 p.thumb{
     border: 1px solid #aaa;
     display:block;
@@ -156,10 +183,6 @@ input:not([type="button"]):active {
 
 img {
     display: block;
-}
-
-.release1 img {
-    max-width: 250px;
 }
 
 .centertxt {
@@ -5261,6 +5284,11 @@ footer .row-content.buffer {
     body {
         font-size: 0.9em;
         -webkit-text-size-adjust: none;
+    }
+}
+@media handheld,only screen and (min-width:48em) {
+    body {
+        padding-top: 60px;
     }
 }
 
