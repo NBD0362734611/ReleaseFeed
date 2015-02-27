@@ -15,28 +15,83 @@
 
 /*新聞詳細ページ*/
 
-.release1 img {
-    max-width: 300px;
+/*******************************
+* 左からの吹き出し
+********************************/
+
+img.avatar {
+    float: left;
+    width: 4.286em;
+    height: 4.286em;
+    -webkit-border-radius: 25%;
+    -moz-border-radius: 25%;
+    border-radius: 25%;
 }
 
-.release-article img {
+.left_balloon {
+    position: relative;
+    background: #fff;
+    border: 1px solid #777;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    margin-right: 20%;
+    clear: both;
+    max-width: 99%;
     float: left;
 }
+.left_balloon:after,
+.left_balloon:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.left_balloon:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-right-color: #fff;
+    border-width: 7px;
+    margin-top: -7px;
+}
+.left_balloon:before {
+    border-color: rgba(0, 0, 0, 0);
+    border-right-color: #000;
+    border-width: 8px;
+    margin-top: -8px;
+}
 
-p.speech
-{
-    position: relative;
-    width: 100%;
-    text-align: center;
-    line-height: 100px;
-    background-color: #fff;
-    border: 8px solid #666;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    border-radius: 30px;
-    -webkit-box-shadow: 2px 2px 4px #888;
-    -moz-box-shadow: 2px 2px 4px #888;
-    box-shadow: 2px 2px 4px #888;
+/*******************************
+* 割り込みを解除
+********************************/
+.clear_balloon{
+  clear: both;
+}
+
+p.speech {
+    /* border-radius */
+    border-radius:3px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+
+    /* box-shadow */
+    box-shadow:rgba(113, 135, 164, 0.65098) 0px 0px 6px 3px;
+    -webkit-box-shadow:rgba(113, 135, 164, 0.65098) 0px 0px 6px 3px;
+    -moz-box-shadow:rgba(113, 135, 164, 0.65098) 0px 0px 6px 3px;
+
+    padding: 20px;
+    min-height: 100px;
+}
+
+.release-article figure {
+    float: right;
+    max-width: 50%;
+}
+.release-article figcaption {
+    font-size: 0.778em;
 }
 
 /*マイページ*/
