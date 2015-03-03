@@ -1,6 +1,9 @@
 <?php
 class Release
 {
+  public function __construct(){
+  }
+
   public function body($rid){
     $data_base = new DataBase();
     if($release_body = $data_base->select("release",array( "rid" => $rid , "flg" => 1))){
@@ -11,12 +14,8 @@ class Release
     //$yahoo_finance = new yahooFinance;
     //$stock_Info = $yahoo_finance->getStockInfo($release_body[sid]);
 
-    if($pr_company = $data_base->selectPressRleaseCompany($rid,1)){
+    if($pr_company = $data_base->selectPressRleaseCompanyFromRid($rid,1)){
       echo($pr_company);
-      $this->br();
-
-      $flg = ($data_base->select("release",array("rid" => $rid)));
-      echo $flg[0]["flg"];
       $this->br();
     }
 
@@ -27,8 +26,6 @@ class Release
 
       }
     }
-
-    $data_base->update("release",array("a"=>1),array("c"=>2));
 
     /*
     return
