@@ -13,11 +13,15 @@
     General Rules
 ----------------------------------------------------------------*/
 
-/*新聞詳細ページ*/
+/* NewRelease*/
 
+h1.newrelease {
+    font-size: 18px;
+}
 /*******************************
 * 左からの吹き出し
 ********************************/
+
 
 img.avatar {
     float: left;
@@ -71,6 +75,8 @@ img.avatar {
   clear: both;
 }
 
+/*新聞詳細ページ*/
+
 p.speech {
     /* border-radius */
     border-radius:3px;
@@ -86,9 +92,13 @@ p.speech {
     min-height: 100px;
 }
 
+p.release {
+}
+
 .release-article figure {
     float: right;
     max-width: 50%;
+    width: 400px;
 }
 .release-article figcaption {
     font-size: 0.778em;
