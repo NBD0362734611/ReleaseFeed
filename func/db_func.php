@@ -1,22 +1,35 @@
 <?php
-$connect_db = "localhost";
-$connect_id = "root";
-$connect_pw = "alue1029";
-$connect = mysql_connect($connect_db,$connect_id,$connect_pw);
-mysql_query("SET NAMES utf8",$connect);
+
 
 class DataBase
 {
-	private $db_name  = "CrowdPress";
+	public function escape($word){
+		return mysql_real_escape_string(htmlspecialchars($word));
+	}
+
+	public $db_name  = "CrowdPress";
+
+	public function __construct(){
+		$connect_db = "localhost";
+		$connect_id = "root";
+		$connect_pw = "alue1029";
+		$connect = mysql_connect($connect_db,$connect_id,$connect_pw);
+		mysql_query("SET NAMES utf8",$connect);
+	}
 
 	public function select($table,$array){
+		$table = $this->escape($table);
 		$sql = "SELECT * FROM $this->db_name.$table WHERE 1=1 ";
-		if(is_array($array)){
+		if(!empty($array)){
 			foreach($array as $key => $value){
+				$key = $this->escape($key);
+				$vallue = $this->escape($value);
 				$sql .= "AND $key = $value ";
 			}
+			$results = mysql_query($sql);
+		}else{
+			return false;
 		}
-		$results = mysql_query($sql);
 		if($results){
 			$a_result = array();
 			while($result = mysql_fetch_assoc($results)){
@@ -26,15 +39,17 @@ class DataBase
 		}else{
 			return false;
 		}
-		mysql_close($connect);
 	}
 
 	public function insert($table,$array){
+		$table = $this->escape($table);
 		$keys ="";
 		$values ="";
-		if(is_array($array)){
+		if(!empty($array)){
 			$count = 1;
 			foreach($array as $key => $value){
+				$key = $this->escape($key);
+				$vallue = $this->escape($value);
 				if($count == 1){
 					$keys .= "`$key` ";
 					$values .= "$value ";
@@ -44,9 +59,12 @@ class DataBase
 				}
 				$count++;
 			}
+		}else{
+			return false;
 		}
 		$sql = "INSERT INTO $this->db_name.$table ($keys) VALUES ($values)";
-		if($results = mysql_query($sql)){
+		$results = mysql_query($sql);
+		if($results){
 			return true;
 		}else{
 			return false;
@@ -54,10 +72,13 @@ class DataBase
 	}
 
 	public function update($table,$a_value,$a_key){
-		if(is_array($a_value)){
+		$table = $this->escape($table);
+		if(!empty($a_value)){
 			$count = 1;
 			$values = "";
 			foreach($a_value as $id => $value){
+				$key = $id->escape($id);
+				$vallue = $this->escape($value);
 				if($count == 1){
 					$values .= "`$id` = $value ";
 				}else{
@@ -65,23 +86,34 @@ class DataBase
 				}
 				$count++;
 			}
+		}else{
+			return false;
 		}
-		if(is_array($a_key)){
+
+		if(!empty($a_key)){
 			$count = 1;
 			$keys = "";
 			foreach($a_key as $id => $value){
+				$key = $id->escape($id);
+				$vallue = $this->escape($value);
 				if($count == 1){
 					$keys .= "`$id` = $value ";
 				}else{
-					$keys .= "`,$id` = $value ";
+					$keys .= "AND `$id` = $value ";
 				}
 				$count++;
 			}
+		}else{
+			return false;
 		}
 
-		$sql = "UPDATE $table SET $values WHERE $keys";
-		echo $sql;
-
+		$sql = "UPDATE $this->db_name.$table SET $values WHERE $keys";
+		$results = mysql_query($sql);
+		if($results){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	public function selectCommentFromRid($rid,$flg){
@@ -97,10 +129,9 @@ class DataBase
 		}else{
 			return false;
 		}
-		mysql_close($connect);
 	}
 
-	public function selectPressRleaseCompany($rid,$flg){
+	public function selectPressRleaseCompanyFromRid($rid,$flg){
 		if($prcid_dump = $this->select("release",array("rid" => $rid, "flg" => 1))){
 			if($prcid = $prcid_dump[0]["prcid"]){
 				$prcname_dump = $this->select("prcid",array( "prcid" => $prcid , "flg" => 1));
@@ -112,69 +143,30 @@ class DataBase
 		}else{
 			return false;
 		}
-		mysql_close($connect);
 	}
 
-	public function clapRelease($rid,$uid){
-	//clapの登録
-	//⇒flg = -1 未登録ならインサート
-	//⇒登録済みならupdate
-		//⇒flg0なら1
-		//⇒flg1なら0
-		//$results = mysql_query($sql);
+	public function plus($table,$array){
+		$a_flg = $this->select($table,$array);
+		if(!empty($a_flg)){
+			$flg = $a_flg[0]["flg"];
+		}else{
+			$flg = -1;
+		}
 
-		$table = "r_clap";
-		$a_flg = $this->select($table,array("rid" => $rid , "uid" => $uid));
-		$flg = $a_flg[0]["flg"];
-		//$this->insert($table, array("rid" => $rid , "uid" => $uid));
-
-		if($flg == -1){//未登録
-			$this->insert($table,array("rid" => $rid, "uid" => $uid));
-		}elseif($flg == 0){//無効中
-
+		if($flg == 0){//無効中
+			$results = $this->update($table,array("flg"=>1),$array);
 		}elseif($flg == 1){//有効
-		
+			$results = $this->update($table,array("flg"=>0),$array);
+		}else{//新規登録
+			$array += array("flg" => 1);
+			var_dump($array);
+			$results = $this->insert($table,$array);
+		}
+		if($results){
+			return true;
+		}else{
+			return false;
 		}
 	}
-
-	public function commentRelease($rid,$uid,$comment,$flg){
-
-	}
-	public function followUser($uid,$follower,$flg){
-
-	}
-	public function followCompany($cid,$follower,$flg){
-
-	}
-
 }
-
-
-
-//SELECT
-/*
-$sql = "SELECT * FROM $db_name.$table WHERE `flg`= $flg";
-$results = mysql_db_query($db_name, $sql);
-while($result = mysql_fetch_assoc($results)){
-  var_dump($result); 
-}
-*/
-
-//UPDATE
-/*
-$column = "id";
-$serch_column = "909";
-$sql = "UPDATE $db_name.$table SET `flg` = 0 WHERE $column = $serch_column;";
-$results = mysql_db_query($db_name, $sql);
-*/
-
-//INSERT
-/*
-$table = "uid";
-$column = "`snsid`,`uid`,`fname`,`lname`,`flg`,`notice`";
-$column_value = "1,777,'Kota','Tatsumi',1,1";
-$sql = "INSERT INTO $db_name.$table ($column) VALUES ($column_value);";
-var_dump($sql);
-$results = mysql_db_query($db_name, $sql);
-*/
 ?>
