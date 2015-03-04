@@ -22,6 +22,7 @@
 	</head>
 
 	<body class="single single-portfolio" style="padding-top: 60px">
+		<span id="uid" user-id="777" style="display:none;"></span>
 
 		<header role="banner" class="transparent light">
 			<div class="row">
@@ -65,8 +66,7 @@
 				</div><!-- row-content -->
 			</div><!-- row -->
 		</header>
-
-			<div id="main" class="row">
+			<div id="main" class="row release" release-id=<?=$_GET["rid"]?>>
 				<div class="row-content buffer-left buffer-right buffer-bottom clear-after">
 					<div id="post-nav">
 						<ul class="clear-after reset plain">
@@ -78,18 +78,22 @@
 
 					<div class="post-area clear-after">
 						<article role="main" class="column nine">
-							<h5 class="meta-post"><a href="#">IT</a>, <a href="#">DeNA</a></h5>
-							<h1>同じ会社の社員同士で名前は内緒で雑談 企業内クローズド匿名SNS「Flat（フラット）」の提供を開始</h1>
+							<h5 class="meta-post"><a href="#">IT</a>,<a href="#"><span class="cname">DeNA</span></a></h5>
+							<h1 class="title">同じ会社の社員同士で名前は内緒で雑談 企業内クローズド匿名SNS「Flat（フラット）」の提供を開始</h1>
 							<div class="gallery slider" data-autoplay="false" data-autoheight="true">
 								<figure>
-									<div><img src="img/dena.png" alt=""></div>
-									<div><img src="img/flat.jpg" alt=""></div>
-									<div><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""></div>
+									<div><img class="img1" src="img/dena.png" alt=""></div>
+									<div><img class="img2" src="img/flat.jpg" alt=""></div>
+									<div><img class="img3" src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""></div>
+									<div><img class="img4" src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""></div>
+									<div><img class="img5" src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""></div>
 								</figure>
 							</div><!-- gallery -->
+							<span class="body">
 							<p>株式会社ディー・エヌ・エー（本社：東京都渋谷区、代表取締役社長兼CEO：守安 功）は、同じ会社の社員同士で使う企業内クローズド匿名SNS「Flat（フラット）」の提供をiPhone、iPad端末向けに2015年2月26日（木）より開始しました。</p>
 							<p>「Flat」は、同じ職場に勤める社員同士のコミュニケーションの促進を目的としたアプリです。同じ会社の社員のみ入ることができるルームで、自分が誰かを知られずにコミュニケーションできます。匿名性があることで、同じ会社という共通のバックグラウンドを持った社員同士が情報交換をフラットに行うことができます。登録には、同じ会社の社員であることを確認するため、会社のメールアドレスが必要です。メンバーが一定の人数に達する等の条件を満たした場合にルームの開設が承認されます。相談事を持ちかけたり、アンケートを取るといった使い方も可能で、社内での役職や職種、立場などを気にせずに自分が気になるコトを気軽に投げかけることができます。例えば、意外と知られていない社内規定や福利厚生の情報が入手できたり、なかなか周りに聞きづらいキャリアや異動に関する情報収集、入社したばかりの人が分からないことを逐一確認するなどの使い方もできます。</p>
 							<p>さらに、同じ会社という枠を越えて他の会社の人と交流できるラウンジという機能もあります。自分の名前は非公開で会社名だけが公開されるため、社内の雰囲気の違いについて情報交換をしたり、特定の会社の人に気軽に質問を投げかけてみたりと、使い方は多岐に渡ります。同じ職場だからこそ分かり合える話題への共感や悩み事の解消から、他社との交流まで多種多様に使えるコミュニケーションツールです。なお「Flat」は、試験運⽤のため一部の企業で利用されています。</p>
+							</span>
 						</article>
 
 						<aside role="complementary" class="sidebar column three last">
@@ -298,6 +302,7 @@
 		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		<script src="js/plugins.js"></script>
 		<script src="js/beetle.js"></script>
+		<script src="js/func.js"></script>
 
 	</body>
 
