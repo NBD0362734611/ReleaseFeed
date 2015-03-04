@@ -72,7 +72,7 @@
                     <h2 class="newrelease">新着リリース</h1>
 
                         <div class="post-area clear-after">
-                            <section role="main" class="release">
+                            <section role="main" class="release1">
                                 <h3 class="release-title">
                                 <a href="release-post.html">DeNA、社員同士で名前は内緒の企業内クローズド匿名SNS「フラット」を提供開始</a></h3>
                                     <div class="portfolio-section preload">
@@ -84,16 +84,27 @@
                                         </article>
                                     </div>
                             </section>
-                            <div class="meta-social column three">
+                            <div class="widget meta-social column half">
                                 <ul class="inline">
-                                    <li><a href="#" class="twitter-share border-box"><i class="fa fa-twitter fa-lg"></i></a></li>
-                                    <li><a href="#" class="facebook-share border-box"><i class="fa fa-facebook fa-lg"></i></a></li>
-                                    <li><a href="#" class="pinterest-share border-box"><i class="fa fa-pinterest fa-lg"></i></a></li>
+                                    <li><a href="#" class="twitter-share border-box "><i class="fa fa-comment-o fa-lg"></i></a></li>
+                                    <li><a href="#" class="facebook-share border-box"><i class="fa fa-facebook fa-lg"></i></a><span class="arrow_box">22</span></li>
+                                    <li><a href="#" class="pinterest-share border-box"><i class="fa fa-pinterest fa-lg"></i></a><span class="arrow_box">33</span></li>
+                                    <li><a href="#" class="check border-box"><i class="fa fa-check-square-o fa-lg"></i></a></li>
                                 </ul>
                             </div>
-                            <div class="column three right">
+                            <div class="column fourth right">
                                 <h5 class="meta-post"><a href="#">IT</a>, <a class="company-name" href="#">DeNA</a> - <time datetime="2013-11-09">2015-02-26</time></h5>
                             </div>
+                            <section cladd="line_wrapper">
+                                <div class="question_Box column left">
+                                    <div class="question_image"><img src="img/facebook_image.jpg" alt="facebookの写真"/></div>
+                                <p class="arrow_question column right">
+                                    コメントコメントコメント
+                                </p><!-- /.arrow_question -->
+                                </div><!-- /.question_Box -->
+                            </section><!-- /.line_wrappaer -->
+
+
                         </div><!-- post-area -->
 
                         <div class="post-area clear-after">
@@ -109,15 +120,15 @@
                                         </article>
                                     </div>
                             </section>
-                            <div class="meta-social column three">
+                            <div class="widget meta-social column three">
                                 <ul class="inline">
-                                    <li><a href="#" class="twitter-share border-box"><i class="fa fa-twitter fa-lg"></i></a></li>
+                                    <li><a href="#" class="twitter-share border-box"><i class="fa fa-comment-o fa-lg"></i></a></li>
                                     <li><a href="#" class="facebook-share border-box"><i class="fa fa-facebook fa-lg"></i></a></li>
                                     <li><a href="#" class="pinterest-share border-box"><i class="fa fa-pinterest fa-lg"></i></a></li>
                                 </ul>
                             </div>
                             <div class="column three right">
-                                <h5 class="meta-post"><a href="#">IT</a>, <a class="company-name" href="#">DeNA</a> - <time datetime="2013-11-09">2015-02-26</time></h5>
+                                <h5 class="meta-post"><a href="#">IT</a>, <a class="company-name" href="#">パナソニック</a> - <time datetime="2013-11-09">2015-02-26</time></h5>
                             </div>
                         </div><!-- post-area -->
 
@@ -175,6 +186,23 @@
         <script src="js/plugins.js"></script>
         <script src="js/beetle.js"></script>
         <script type="text/javascript" src="js/footerFixed.js"></script>
+        <script type="text/javascript">
+        $(function(){
+            var num1 = 0;
+            $('ul li .check').click(function(){
+                $(this).data("click", ++num1);
+                var click = $(this).data("click");
+                if (click%2 == 1) {
+                    $("section.release1")
+                    .css("background-color","#cccccc");
+                } else {
+                    $("section.release1")
+                    .css("background-color","");
+                }
+                return false;
+            });
+        });
+        </script>
 
     </body>
 
