@@ -21,6 +21,7 @@ for ($page = 1; $result; $page++) {
     $relID[$i] = substr ("$nstr" , $relIDstart[$i] + 18  , $relIDend );
     $sql = "SELECT * FROM `release` WHERE `prrid` = ".$relID[$i] .";";
     $result = mysql_db_query($db_name, $sql);
+    var_dump($sql);
     var_dump(mysql_num_rows($result));
     if(mysql_num_rows($result)==0){
         $prstr = nikkei_get_prstr($relID[$i]);
@@ -33,6 +34,9 @@ for ($page = 1; $result; $page++) {
         if(!isset($cid)||$cid<0){
           $cid = 0;
         }
+        //本文
+        $body = nikkei_get_article($relID[$i],$prstr);
+        //iイメージ
         $prurl = "http://release.nikkei.co.jp/detail.cfm?relID=0".$relID[$i]."";
         $img[1] = "";
         $img[2] = "";
@@ -50,21 +54,14 @@ for ($page = 1; $result; $page++) {
             $flg++;
           }
         }
-        $sql = "INSERT INTO `release`(`prcid`,`prrid`,`url`,`sid`,`cname`,`title`,`img1`,`img2`,`img3`,`img4`,`img5`,`flg`,`clap`,`favorite`) ";
-        $sql .= "VALUES (1,".$relID[$i].",'".$prurl."',".$cid.",'".$cname."','".$titlename."','".$img[1]."','".$img[2]."','".$img[3]."','".$img[4]."','".$img[5]."',1,0,0);";
+        $sql = "INSERT INTO `release`(`prcid`,`prrid`,`url`,`sid`,`cname`,`title`,`img1`,`img2`,`img3`,`img4`,`img5`,`flg`,`clap`,`favorite`,`body`) ";
+        $sql .= "VALUES (1,".$relID[$i].",'".$prurl."',".$cid.",'".$cname."','".$titlename."','".$img[1]."','".$img[2]."','".$img[3]."','".$img[4]."','".$img[5]."',1,0,0,'".$body."');";
         echo $sql;
         echo "<br>";
         $result = mysql_db_query($db_name, $sql);
         var_dump($result);
         echo "<br>";
 
-
-
-        // if($_GET["print"] == 1){
-        //   var_dump($result);
-        //   echo $titlename;
-        //   echo "<br>";
-        // }
      }else{
       exit;
      }
@@ -107,12 +104,12 @@ function nikkei_get_cid($relID,$prstr){
   }
 }
 function nikkei_get_article($relID,$prstr){
-  $cidstart = strpos ( "$prstr" , '株式コード：') + 18;
-  $cidend = strpos ( "$prstr" , '</a>' , $cidstart) - $cidstart;
-  if($cidstart != 18){
-    $article = substr ("$prstr" , $cidstart, $cidend );
-    return $prstr;
-  }
+
+  $titlestart = strpos ( "$prstr" , '<h1 id="heading" class="heading">') + 33;
+  $bodystart = strpos("$prstr", '<p>', $titlestart);
+  $bodyend = strpos ( "$prstr" , '</p>' , $bodystart) - $bodystart + 4;
+  $body = substr ("$prstr" , $bodystart, $bodyend );
+  return $body;
 }
 function nikkei_get_img($relID){
   $img = "";

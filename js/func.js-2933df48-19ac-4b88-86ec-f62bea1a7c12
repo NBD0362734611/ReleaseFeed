@@ -1,68 +1,30 @@
 //user-id の読み込み
 jQuery(window).load(function () {
-var uid = parseInt(jQuery("#uid").attr("user-id")); 
-//console.log(uid); 
+var uid = jQuery("#uid").attr("user-id"); 
+console.log(uid); 
 	//release-idの読み込み
 	jQuery(".release").each(function(i){
 		var release = jQuery(this);
-		var rid = parseInt(release.attr("release-id"));
-		if(rid != "" ){
-			//console.log(rid);
-			/*記事の読み込み*/
-			$.ajax({
-				url: '../ajax/get_release.php',
+		var rid = release.attr("release-id");
+		if(true{
+			console.log(rid);
+			jQuery.ajax({
+				url: './ajax/get_release.php',
 				type:'POST',
 				dataType: 'json',
-				data : {'rid': rid},
-				timeout:1000,
+				data : {rid: rid},
+				timeout:10000,
 				success: function(data) {
-				    //console.log(data);
-				  if(data !== ""){
-				    release.find(".title").html(data["title"]);
-				    release.find(".cname").html(data["cname"]);
-				    release.find(".body").html(data["body"]);
-				    release.find(".previous_release").attr("href",location.pathname + "?rid=" + data["previous"]);
-				    release.find(".next_release").attr("href",location.pathname + "?rid=" + data["next"]);
-				    release.find(".img1").attr("src",data["img1"]);
-				    release.find(".img2").attr("src",data["img2"]);
-				    release.find(".img3").attr("src",data["img3"]);
-				    release.find(".img4").attr("src",data["img4"]);
-				    release.find(".img5").attr("src",data["img5"]);
-				  }
-				  else{
-				    alert("Error!");
-				  }
-				},
-				error: function(XMLHttpRequest, textStatus, errorThrown) {
-				}
-			});
-			/*コメントの読み込み*/
-			$.ajax({
-				url: '../ajax/get_comment_from_rid.php',
-				type:'POST',
-				dataType: 'json',
-				//data : {'rid': rid},
-				data : {'rid': 813524},
-				timeout:1000,
-				success: function(data) {
-				    //console.log(data);
-				  if(data !== ""){
-				  	for (var i = 0; i < data.length; i++) {
-				  		console.log(data[i]["comment"]);
-				  		var single_comment =	"<div class=\"single-comment\">";
-						single_comment +=		"<div class=\"comment-author\">";
-						single_comment +=						"<img src=\"http://placehold.it/60x60\" class=\"avatar\" alt=\"\">";
-						single_comment +=						"<cite><a href=\"#\">Mark Robben</a></cite>";
-						single_comment +=						"<span class=\"says\">says:</span>";
-						single_comment +=					"</div><!-- comment-author -->";
-						single_comment +=					"<div class=\"comment-meta\">";
-						single_comment +=						"<time datetime=\"2013-03-23 19:58\">March 23, 2013 at 7:58 pm</time> / <a href=\"#\" class=\"reply\">Reply</a>";
-						single_comment +=					"</div><!-- comment-meta -->";
-						single_comment +=					"<p>" + data[i]["comment"] + "</p>";
-						single_comment +=				"</div><!-- single-comment -->";
-				  		release.find(".comment-list").html(single_comment);
-
-				  	};
+				console.log(data);
+				  if(data[0] !== ""){
+				    release.find(".title").html(data[0]["title"]);
+				    release.find(".cname").html(data[0]["cname"]);
+				    release.find(".img1").attr("src",data[0]["img1"]);
+				    release.find(".img2").attr("src",data[0]["img2"]);
+				    release.find(".img3").attr("src",data[0]["img3"]);
+				    release.find(".img4").attr("src",data[0]["img4"]);
+				    release.find(".img5").attr("src",data[0]["img5"]);
+				    console.log("hello");
 				  }
 				  else{
 				    alert("Error!");
@@ -449,7 +411,7 @@ var uid = parseInt(jQuery("#uid").attr("user-id"));
 //       data : {row: row, num: num},
 //       timeout:1000,
 //       success: function(data) {
-//         //console.log(data.articles.aid);
+//         //console.log(data.articles[0].aid);
 //         for (var k = 0; k < num; k++){
 //           console.log(data.articles[k].aid);
 //           if(data.articles[k].aid >= 1){
@@ -580,4 +542,4 @@ var uid = parseInt(jQuery("#uid").attr("user-id"));
 //     jQuery(document).on("click",'.push_msg_box',function(){
 //       location.href = jQuery(this).attr("data-url");
 //     });
-//   });
+//   });;

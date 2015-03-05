@@ -17,15 +17,36 @@ class DataBase
 		mysql_query("SET NAMES utf8",$connect);
 	}
 
-	public function select($table,$array){
+	public function select($table,$array,$compare = 0,$limit = 0,$sort = 0,$order = ""){
+		if($compare == 0){
+			$compare = "=";
+		}elseif($compare == 1){
+			$compare = "<";
+		}elseif($compare == -1){
+			$compare = ">";
+		}
+		if($sort == 0){
+			$sort= "";
+		}elseif($sort == 1){
+			$sort = "ORDER BY $order ASC";
+		}elseif($sort == -1){
+			$sort = "ORDER BY $order DESC";
+		}
+		if($limit == 0){
+			$limit = "";
+		}else{
+			$limit = "LIMIT $limit ";
+		}
+
 		$table = $this->escape($table);
-		$sql = "SELECT * FROM $this->db_name.$table WHERE 1=1 ";
+		$sql = "SELECT * FROM $this->db_name.$table WHERE flg=1 ";
 		if(!empty($array)){
 			foreach($array as $key => $value){
 				$key = $this->escape($key);
 				$vallue = $this->escape($value);
-				$sql .= "AND $key = $value ";
+				$sql .= "AND $key $compare '$value' ";
 			}
+			$sql .= "$sort $limit ";
 			$results = mysql_query($sql);
 		}else{
 			return false;
@@ -116,9 +137,9 @@ class DataBase
 		}
 	}
 
-	public function selectCommentFromRid($rid,$flg){
+	public function selectCommentFromRid($rid,$flg=1){
 		$table = "r_comment";
-		$sql = "SELECT * FROM $this->db_name.$table WHERE rid = $rid ORDER BY  `$table`.`time` ASC";
+		$sql = "SELECT * FROM $this->db_name.$table WHERE rid = $rid AND flg = $flg ORDER BY  `$table`.`time` ASC";
 		$results = mysql_query($sql);
 		if($results){
 			$a_result = array();
@@ -131,8 +152,8 @@ class DataBase
 		}
 	}
 
-	public function selectPressRleaseCompanyFromRid($rid,$flg){
-		if($prcid_dump = $this->select("release",array("rid" => $rid, "flg" => 1))){
+	public function selectPressRleaseCompanyFromRid($rid,$flg=1){
+		if($prcid_dump = $this->select("release",array("rid" => $rid, "flg" => $flg))){
 			if($prcid = $prcid_dump[0]["prcid"]){
 				$prcname_dump = $this->select("prcid",array( "prcid" => $prcid , "flg" => 1));
 				$prcname = $prcname_dump[0]["prcname"];
