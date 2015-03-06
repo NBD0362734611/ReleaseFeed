@@ -139,7 +139,7 @@ class DataBase
 
 	public function selectCommentFromRid($rid,$flg=1){
 		$table = "r_comment";
-		$sql = "SELECT * FROM $this->db_name.$table WHERE rid = $rid AND flg = $flg ORDER BY  `$table`.`time` ASC";
+		$sql = "SELECT * FROM $this->db_name.$table WHERE rid = $rid AND flg = $flg AND reply=0 ORDER BY  `$table`.`time` ASC";
 		$results = mysql_query($sql);
 		if($results){
 			$a_result = array();

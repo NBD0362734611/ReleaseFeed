@@ -23,73 +23,85 @@ class Release
       foreach ($comments as $comment) {
         echo $comment["comment"];
         $this->br();
-
       }
     }
-
-    /*
-    return
-    "
-    <div class=\"release\" release-id=\"$release_body[aid]\">
-      <span  class=\"release_title\">
-        $release_body[title]
-      </span>
-      <span class=\"release_company\">
-        $release_body[cname]
-      </span>
-      <span class=\"release_stock_code\">
-        $release_body[sid]
-      </span>
-      <span class=\"release_stock_price\">
-        $stock_Info[price]
-      </span>
-      <div class=\"release_img_box\">
-        <span class=\"release_img\" data-id=\"$release_body[img1]\">
-        </span>
-        <span class=\"release_img\" data-id=\"$release_body[img2]\">
-        </span>
-        <span class=\"release_img\" data-id=\"$release_body[img3]\">
-        </span>
-        <span class=\"release_img\" data-id=\"$release_body[img4]\">
-        </span>
-        <span class=\"release_img\" data-id=\"$release_body[img5]\">
-        </span>
-      </div>
-      <span class=\"post_commnet\">
-      </span>
-      <span class=\"post_good\">
-      </span>
-      <span class=\"post_favorite\">
-      </span>
-      <div class=\"comment_boxes\">
-        <div class=\"comment_box\" comment-id=\"\" comment-user-id=\"\">
-          <span class = \"comment_img\">
-          </span>
-          <span class = \"comment_text\">
-          </span>
-          <span class = \"comment_time\">
-          </span>
-          <span class = \"comment_good\">
-          </span>
-          <span class = \"comment_favorite\">
-          </span>
-          <span class = \"comment_delete\">
-          </span>
-        </div>
-        <div class=\"comment_box\" comment-id=\"\" comment-user-id=\"\">
-        </div>
-        <div class=\"comment_box\" comment-id=\"\" comment-user-id=\"\">
-        </div>
-        <div class=\"comment_box\" comment-id=\"\" comment-user-id=\"\">
-        </div>
-        <div class=\"comment_box\" comment-id=\"\" comment-user-id=\"\">
-        </div>
-      </div>
-    </div>
-    ";// class='release'
-    */
-
   }
+    public function commentArea($rid){//コメントエリア
+      $html = "
+          <div class=\"comment-section\">
+            <h3 id=\"comments\">19 Comments</h3>
+            <ul class=\"comment-list plain\">
+      ";
+      $db = new DataBase();
+      $data = $db->selectCommentFromRid($rid);
+      foreach($data as $value){
+        $this->commentBox($value["commentid"]);
+
+      }
+      $html .= "
+            </ul>
+          </div><!-- comment-section -->
+      ";
+      echo $html;
+    }
+
+    public function commentsNum($rid){//コメント数
+
+    }
+
+    public function commentBox($cid){//コメント+返信
+      //replyidがあればインクルード
+      $html = "
+          <li class=\"comment\">
+      ";
+      $db = new DataBase();
+      $comment = $this->comment($cid);
+      $html .= "$comment";
+      $a_reply = $this->commentReply($cid);
+      $html .="
+          <ul class=\"children plain\">
+        ";
+      foreach ($a_reply as $key => $value) {
+        $html .="
+          <li class=\"comment\">
+        ";
+
+        $html .="
+          </li>
+        ";
+      }
+      // var_dump($comment);
+      // var_dump($a_reply);
+      $html .="
+          </ul>
+      ";
+      $html = "
+          <li class=\"comment\">
+      ";
+    }
+    public function comment($cid){//コメント1件
+      $db = new DataBase();
+      $comment = $db->select("r_comment",array("commentid"=>$cid));
+      $html = "
+          <div class=\"single-comment\">
+            <div class=\"comment-author\">
+              <img src=\"http://placehold.it/60x60\" class=\"avatar\" alt=\"\">
+              <cite><a href=\"#\">Mark Robben</a></cite>
+              <span class=\"says\">says:</span>
+            </div><!-- comment-author -->
+            <div class=\"comment-meta\">
+              <time datetime=\"2013-03-23 19:58\">March 23, 2013 at 7:58 pm</time> / <a href=\"#\" class=\"reply\">Reply</a>
+            </div><!-- comment-meta -->
+            <p>".$comment[0]['comment']."</p>
+          </div><!-- single-comment -->
+      ";
+      return $html;
+    }
+    public function commentReply($cid){//コメント返信
+      $db = new DataBase();
+      $a_reply = $db->select("r_comment",array("reply"=>$cid));
+      return $a_reply;
+    }
   private function br(){
     echo "<br>";
   } 

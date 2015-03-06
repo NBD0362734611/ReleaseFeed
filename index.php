@@ -1,11 +1,11 @@
 <?php
-include_once("./func/func.php");
-include_once("./func/db_func.php");
-include_once("./func/yahoo_func.php");
+echo "
+<a href='index.html'>トップLP</a><br>
+<a href='newrelease.html'>新着リリース</a><br>
+<a href='release-post.html'>リリース詳細</a><br>
+<a href='mypage-pocket.html'>新聞1</a><br>
+<a href='paper2.html'>新聞2</a><br>
+<a href='contact.html'>コンタクト</a><br>
 
-	$release = new Release();
-	for($rid=909;$rid<1000;$rid++){
-		//$rid =811775;
-		$release->body($rid);
-	}
+";
 ?>
