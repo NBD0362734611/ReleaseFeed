@@ -78,15 +78,15 @@
 
 					<div class="post-area clear-after">
 						<article role="main" class="column nine">
-							<h5 class="meta-post"><a href="#">IT</a>,<a class="cname" href="#"></a></h5>
-							<h1 class="title"></h1>
+							<h5 class="meta-post"><a href="#">IT</a>,<a class="cname" href="#">会社名</a></h5>
+							<h1 class="title">記事タイトル</h1>
 							<div class="gallery slider" data-autoplay="false" data-autoheight="true">
 								<figure>
-									<div><img class="img1" src="" alt=""></div>
-									<div><img class="img2" src="" alt=""></div>
-									<div><img class="img3" src="" alt=""></div>
-									<div><img class="img4" src="" alt=""></div>
-									<div><img class="img5" src="" alt=""></div>
+									<div><img class="img1" src="" alt="">写真１</div>
+									<div><img class="img2" src="" alt="">写真２</div>
+									<div><img class="img3" src="" alt="">写真３</div>
+									<div><img class="img4" src="" alt="">写真４</div>
+									<div><img class="img5" src="" alt="">写真５</div>
 								</figure>
 							</div><!-- gallery -->
 							<span class="body">
@@ -157,7 +157,9 @@
 						</div>
 					</div>
 
-
+					<div class="comment-section">
+						<?php require_once('ajax/get_comment_from_rid.php') ?>
+					</div>
 					<div id="post-comment" class="clear-after">
 						<h3 id="reply-title">Leave a Reply</h3>
 						<p class="comment-note">Your email address will not be published.</p>

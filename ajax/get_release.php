@@ -5,13 +5,13 @@ $rid = $_POST["rid"];
 //$rid = 813523;
 
 if(!empty($rid)){
-	$release = new DataBase;
-	$data = $release->select("release",array("rid"=>$rid));
-	if($next = $release->select("release",array("time"=>$data[0]["time"]),-1,1,1,"time")){
+	$db = new DataBase;
+	$data = $db->select("release",array("rid"=>$rid));
+	if($next = $db->select("release",array("time"=>$data[0]["time"]),-1,1,1,"time")){
 	}else{
 		$next[0]["rid"]=$rid;
 	}
-	if($previous = $release->select("release",array("time"=>$data[0]["time"]),1,1,-1,"time")){
+	if($previous = $db->select("release",array("time"=>$data[0]["time"]),1,1,-1,"time")){
 	}else{
 		$previous[0]["rid"]=$rid;
 	}

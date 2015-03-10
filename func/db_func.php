@@ -32,7 +32,7 @@ class DataBase
 		}elseif($sort == -1){
 			$sort = "ORDER BY $order DESC";
 		}
-		if($limit == 0){
+		if($limit == "0"){
 			$limit = "";
 		}else{
 			$limit = "LIMIT $limit ";
@@ -188,6 +188,17 @@ class DataBase
 		}else{
 			return false;
 		}
+	}
+	public function getLatestReleaseId($num=1){
+		$table = "release";
+		$compare = 0;
+		$limit = "".$num-1 ." , 1";
+		$sort = -1;
+		$order = "time";
+		$db = new DataBase();
+		$data = $db->select("$table", array("flg" => 1 ),$compare,$limit,$sort,$order);
+		return $data[0]["rid"];
+
 	}
 }
 ?>

@@ -67,20 +67,28 @@
 
         <main role="main">
             <div id="main" class="row">
-                <div class="row-content buffer">
+                <div class="row-content buffer ">
 
                     <h2 class="newrelease">新着リリース</h1>
-
-                        <div class="post-area clear-after">
+                        <div class="release-box"></div>
+                
+                        <?php 
+                         require_once("func/func.php");
+                         require_once("func/db_func.php");
+                         $release = new Release;
+                        echo $release->releaseBoxes(1, 50);
+                         
+                        ?>
+  <?php /*                      <div class="post-area clear-after release rid-add" >
                             <section role="main" class="release1">
                                 <h3 class="release-title">
-                                <a href="release-post.html">DeNA、社員同士で名前は内緒の企業内クローズド匿名SNS「フラット」を提供開始</a></h3>
+                                <a href="release-post.html"><span class="title">タイトル</span></a></h3>
                                     <div class="portfolio-section preload">
                                         <article class="item column fourth">
-                                        <figure><img src="img/dena.png" alt=""></figure>
+                                        <figure><img class="img1" src="img/dena.png" alt=""></figure>
                                         </article>
                                         <article class="item column fourth">
-                                        <figure><img src="img/flat.jpg" alt=""></figure>
+                                        <figure><img class="img2" src="img/flat.jpg" alt=""></figure>
                                         </article>
                                     </div>
                             </section>
@@ -93,7 +101,7 @@
                                 </ul>
                             </div>
                             <div class="column fourth right">
-                                <h5 class="meta-post"><a href="#">IT</a>, <a class="company-name" href="#">DeNA</a> - <time datetime="2013-11-09">2015-02-26</time></h5>
+                                <h5 class="meta-post"><a href="#">IT</a>, <a class="company-name cname" href="#">会社名</a> - <time class="time" datetime=>リリース時刻</time></h5>
                             </div>
                             <section cladd="line_wrapper">
                                 <div class="question_Box">
@@ -103,34 +111,8 @@
                                     </p><!-- /.arrow_question -->
                                 </div><!-- /.question_Box -->
                             </section><!-- /.line_wrappaer -->
-
-
                         </div><!-- post-area -->
-
-                        <div class="post-area clear-after">
-                            <section role="main" class="release">
-                                <h3 class="release-title">
-                                <a href="release-post.html">パナソニック、「Let's　note」RZ４シリーズの専用カラー天板を限定発売</a></h3>
-                                    <div class="portfolio-section preload">
-                                        <article class="item column fourth">
-                                        <figure><img src="img/note1.JPG" alt=""></figure>
-                                        </article>
-                                        <article class="item column fourth">
-                                        <figure><img src="img/note2.JPG" alt=""></figure>
-                                        </article>
-                                    </div>
-                            </section>
-                            <div class="widget meta-social column three">
-                                <ul class="inline">
-                                    <li><a href="#" class="twitter-share border-box"><i class="fa fa-comment-o fa-lg"></i></a></li>
-                                    <li><a href="#" class="facebook-share border-box"><i class="fa fa-facebook fa-lg"></i></a></li>
-                                    <li><a href="#" class="pinterest-share border-box"><i class="fa fa-pinterest fa-lg"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="column three right">
-                                <h5 class="meta-post"><a href="#">IT</a>, <a class="company-name" href="#">パナソニック</a> - <time datetime="2013-11-09">2015-02-26</time></h5>
-                            </div>
-                        </div><!-- post-area -->
+*/ ?>
 
                 </div><!-- row-content -->
             </div><!-- row -->
@@ -185,6 +167,7 @@
         <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script src="js/plugins.js"></script>
         <script src="js/beetle.js"></script>
+        <script src="js/func.js"></script>
         <script type="text/javascript" src="js/footerFixed.js"></script>
         <script type="text/javascript">
         $(function(){
