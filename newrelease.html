@@ -66,10 +66,11 @@
         </header>
 
         <main role="main">
+
             <div id="main" class="row">
                 <div class="row-content buffer">
 
-                    <h2 class="newrelease">新着リリース</h1>
+                    <h2 class="newrelease">新着リリース</h2>
 
                         <div class="post-area clear-after">
                             <section role="main" class="release1">
@@ -86,50 +87,25 @@
                             </section>
                             <div class="widget meta-social column half">
                                 <ul class="inline">
-                                    <li><a href="#" class="twitter-share border-box "><i class="fa fa-comment-o fa-lg"></i></a></li>
-                                    <li><a href="#" class="facebook-share border-box"><i class="fa fa-facebook fa-lg"></i></a><span class="arrow_box">22</span></li>
-                                    <li><a href="#" class="pinterest-share border-box"><i class="fa fa-pinterest fa-lg"></i></a><span class="arrow_box">33</span></li>
-                                    <li><a href="#" class="check border-box"><i class="fa fa-check-square-o fa-lg"></i></a></li>
+                                    <li><a href="#" class="mycomment border-box"><i class="fa fa-comment-o fa-lg"></i></a></li>
+                                    <li><a href="#" class="clap border-box"><i class="fa fa-facebook fa-lg"></i></a><span class="arrow_box">クラップ数</span></li>
+                                    <li><a href="#" class="scrap border-box"><i class="fa fa-pinterest fa-lg"></i></a><span class="arrow_box">スクラップ数</span></li>
                                 </ul>
                             </div>
-                            <div class="column fourth right">
+                            <div class="column half right last">
                                 <h5 class="meta-post"><a href="#">IT</a>, <a class="company-name" href="#">DeNA</a> - <time datetime="2013-11-09">2015-02-26</time></h5>
                             </div>
+                            <div class="clear"></div>
                             <section cladd="line_wrapper">
-                                <div class="question_Box">
-                                    <div class="question_image column left"><img src="img/facebook_image.jpg" alt="facebookの写真"/></div>
-                                    <p class="arrow_question column ten reset">
-                                    コメントコメントコメント
+                                <div class="question_Box inline">
+                                    <div class="question_image column inline-block"><img src="img/facebook_image.jpg" alt="facebookの写真"/></div>
+                                    <p class="arrow_question column ten reset inline-block">
+                                    自分のコメント
                                     </p><!-- /.arrow_question -->
                                 </div><!-- /.question_Box -->
+                                <div class="clear"></div>
                             </section><!-- /.line_wrappaer -->
 
-
-                        </div><!-- post-area -->
-
-                        <div class="post-area clear-after">
-                            <section role="main" class="release">
-                                <h3 class="release-title">
-                                <a href="release-post.html">パナソニック、「Let's　note」RZ４シリーズの専用カラー天板を限定発売</a></h3>
-                                    <div class="portfolio-section preload">
-                                        <article class="item column fourth">
-                                        <figure><img src="img/note1.JPG" alt=""></figure>
-                                        </article>
-                                        <article class="item column fourth">
-                                        <figure><img src="img/note2.JPG" alt=""></figure>
-                                        </article>
-                                    </div>
-                            </section>
-                            <div class="widget meta-social column three">
-                                <ul class="inline">
-                                    <li><a href="#" class="twitter-share border-box"><i class="fa fa-comment-o fa-lg"></i></a></li>
-                                    <li><a href="#" class="facebook-share border-box"><i class="fa fa-facebook fa-lg"></i></a></li>
-                                    <li><a href="#" class="pinterest-share border-box"><i class="fa fa-pinterest fa-lg"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="column three right">
-                                <h5 class="meta-post"><a href="#">IT</a>, <a class="company-name" href="#">パナソニック</a> - <time datetime="2013-11-09">2015-02-26</time></h5>
-                            </div>
                         </div><!-- post-area -->
 
                 </div><!-- row-content -->
@@ -186,23 +162,6 @@
         <script src="js/plugins.js"></script>
         <script src="js/beetle.js"></script>
         <script type="text/javascript" src="js/footerFixed.js"></script>
-        <script type="text/javascript">
-        $(function(){
-            var num1 = 0;
-            $('ul li .check').click(function(){
-                $(this).data("click", ++num1);
-                var click = $(this).data("click");
-                if (click%2 == 1) {
-                    $("section.release1")
-                    .css("background-color","#cccccc");
-                } else {
-                    $("section.release1")
-                    .css("background-color","");
-                }
-                return false;
-            });
-        });
-        </script>
 
     </body>
 
