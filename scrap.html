@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta name="description" content="The Page Description">
         <style type="text/css">@-ms-viewport{width: device-width;}</style>
-        <title>NewRelease</title>
+        <title>スクラップ</title>
         <link rel="stylesheet" href="css/layers.min.css" media="screen">
         <link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
         <link rel="stylesheet" href="style.css" media="screen">
@@ -68,31 +68,25 @@
         <main role="main">
 
             <div id="main" class="row">
-                <div class="row-content buffer ">
+                <div class="row-content buffer">
 
-                    <h2 class="newrelease">新着リリース</h1>
-                        <div class="release-box"></div>
-                
-                        <?php 
-                         require_once("func/func.php");
-                         require_once("func/db_func.php");
-                         $release = new Release;
-                        echo $release->releaseBoxes(1, 50);
-                         
-                        ?>
-  <?php /*                      <div class="post-area clear-after release rid-add" >
-                    <h2 class="newrelease">新着リリース</h2>
+                <div id="scrap-bar" class="">
+                    <div id="checked-number">0個選択中</div>
+                    <a class="button transparent" href="#">PUBLISH</a>
+                </div>
+
+                    <h2 class="newrelease">スクラップ</h2>
 
                         <div class="post-area clear-after">
                             <section role="main" class="release1">
-                                <h3 class="release-title">
-                                <a href="release-post.html"><span class="title">タイトル</span></a></h3>
+                                <h3 class="release-title inline">
+                                <a href="release-post.html">DeNA、社員同士で名前は内緒の企業内クローズド匿名SNS「フラット」を提供開始</a></h3><input type="checkbox" id="check1"><label for="check1"></label>
                                     <div class="portfolio-section preload">
                                         <article class="item column fourth">
-                                        <figure><img class="img1" src="img/dena.png" alt=""></figure>
+                                        <figure><img src="img/dena.png" alt=""></figure>
                                         </article>
                                         <article class="item column fourth">
-                                        <figure><img class="img2" src="img/flat.jpg" alt=""></figure>
+                                        <figure><img src="img/flat.jpg" alt=""></figure>
                                         </article>
                                     </div>
                             </section>
@@ -106,18 +100,18 @@
                             <div class="column half right last">
                                 <h5 class="meta-post"><a href="#">IT</a>, <a class="company-name" href="#">DeNA</a> - <time datetime="2013-11-09">2015-02-26</time></h5>
                             </div>
-                            <div class="clear"></div>
+                            <div class ="clear"></div>
                             <section cladd="line_wrapper">
                                 <div class="question_Box inline">
                                     <div class="question_image column inline-block"><img src="img/facebook_image.jpg" alt="facebookの写真"/></div>
-                                    <p class="arrow_question column ten reset inline-block">
+                                    <p class="arrow_question column ten reset inline-block last">
                                     自分のコメント
                                     </p><!-- /.arrow_question -->
                                 </div><!-- /.question_Box -->
                                 <div class="clear"></div>
                             </section><!-- /.line_wrappaer -->
+
                         </div><!-- post-area -->
-*/ ?>
 
                 </div><!-- row-content -->
             </div><!-- row -->
@@ -172,8 +166,23 @@
         <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script src="js/plugins.js"></script>
         <script src="js/beetle.js"></script>
-        <script src="js/func.js"></script>
         <script type="text/javascript" src="js/footerFixed.js"></script>
+        <script type="text/javascript">
+        //チェックボックスをクリックするとイベント発火
+        $("input[type=checkbox]").click(function(){
+          var $count = $("input[type=checkbox]:checked").length;
+          var $not = $('input[type=checkbox]').not(':checked');
+
+          $("#checked-number").html($count + "個選択中");
+          //チェックが5つ付いたら、チェックされてないチェックボックスにdisabledを加える
+          if($count >= 5) {
+            $not.attr("disabled",true);
+            }else{
+          //5つ以下ならisabledを外す
+            $not.attr("disabled",false);
+            }
+         });
+        </script>
 
     </body>
 
