@@ -10,7 +10,7 @@ jQuery(document).on("click",'.link',function(){
     location.href = jQuery(this).attr("data-url");
 });
 function addReleaseBox(repeat){
-	$.ajax({
+	jQuery.ajax({
 		url: '../ajax/get_release_box.php',
 		type:'POST',
 		dataType: 'json',
@@ -19,7 +19,7 @@ function addReleaseBox(repeat){
 		success: function(data) {
 			console.log(data);
 		  if(data !== ""){
-		    var makeReleaseBox = $.when(
+		    var makeReleaseBox = jQuery.when(
 		    	jQuery(".release-box").html(data)
 		    	);
 		    makeReleaseBox.done(function() {
@@ -39,7 +39,7 @@ function addReleaseId(){
 	jQuery(".rid-add").each(function(j){
 		var target = jQuery(this);
 		var page = 1;
-		$.ajax({
+		jQuery.ajax({
 			url: '../ajax/get_release_id.php',
 			type:'POST',
 			dataType: 'json',
@@ -48,7 +48,7 @@ function addReleaseId(){
 			success: function(data) {
 			  if(data !== ""){
 			  	console.log(data);
-			    var addReleaseId  = $.when(
+			    var addReleaseId  = jQuery.when(
 			    	target.attr("release-id",data[0]["rid"])
 			    	);
 			    addReleaseId.done(function(){
@@ -73,7 +73,7 @@ function addReleaseBody(){
 		if(rid != "" ){
 			//console.log(rid);
 			/*記事の読み込み*/
-			$.ajax({
+			jQuery.ajax({
 				url: '../ajax/get_release.php',
 				type:'POST',
 				dataType: 'json',
@@ -105,3 +105,58 @@ function addReleaseBody(){
 	  	}
 	});
 }
+
+jQuery(function(){
+	// JavaScript SDKの読み込み
+	var e = document.createElement('script'); e.async = true;
+	e.src = document.location.protocol +　'//connect.facebook.net/ja_JP/all.js';
+	document.getElementById('fb-root').appendChild(e);
+
+	// JavaScript SDKの読み込みが終わったら実行される処理
+	window.fbAsyncInit = function(){
+		FB.init({
+			appId: '911848368876980',
+			status: true,
+			cookie: true,
+			xfbml: true
+		});
+	
+		// Facebookにログイン中か判定
+		FB.getLoginStatus(function(response){
+			if(response.authResponse){
+				jQuery('#login-header').hide();
+				jQuery('#logout-header').show();
+			}else{
+				jQuery('#logout-header').hide();
+				jQuery('#login-header').show();
+			}
+		});
+	};
+
+	// ログインボタンが押されたらログインウィドウを表示
+	jQuery('.login-btn').click(function(){
+		FB.login(function(response){
+			if(response.authResponse){
+				jQuery('#login-header').hide();
+				jQuery('#logout-header').show();
+			}
+		});
+	});
+
+	// ログアウトボタンが押されたらログアウトする
+	jQuery('.logout-btn').click(function(){
+		FB.logout(function(response){
+			jQuery('#logout-header').hide();
+			jQuery('#login-header').show();
+		});
+	});
+
+	// ログイン中のアカウントの情報を取得する
+	jQuery('#getMe button').click(function(){
+		var request = 'me';
+		FB.api(request, function(response) {
+			console.log(response);
+		});
+	});
+
+});
