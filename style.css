@@ -13,6 +13,33 @@
     General Rules
 ----------------------------------------------------------------*/
 
+/* Setting */
+
+a.change {
+    color: #0099CF;
+    padding-left: 10px;
+    text-decoration:none;
+}
+.setting a:hover {
+text-decoration:underline;
+}
+
+.setting {
+    font-size:15px;
+}
+
+.setting-item {
+    margin:30px;
+}
+
+.setting-wrapper {
+  position: relative;
+  top: 50px;
+  background: white;
+  margin: 3em auto;
+  padding: 0 1em;
+  max-width: 600px;
+}
 
 /* Scrap */
 
