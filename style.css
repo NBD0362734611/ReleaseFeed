@@ -15,6 +15,10 @@
 
 /* Setting */
 
+.visibility_hidden {
+ visibility: hidden; 
+}
+
 a.change {
     color: #0099CF;
     padding-left: 10px;
