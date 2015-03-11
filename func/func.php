@@ -4,7 +4,76 @@ class Release
   public function __construct(){
 
   }
-
+  public function header(){
+    //ログイン状態によって分ける
+    //return $this->headerBeforeLogin();
+    return $this->headerAfterLogin();
+  }
+  public function headerBeforeLogin(){
+        $html = "";
+        $html .="
+        <header role=\"banner\" class=\"transparent light\">
+          <div class=\"row\">
+            <div class=\"nav-inner row-content buffer-left buffer-right even clear-after\">
+              <div id=\"brand\">
+                <h1 class=\"reset\"><!--<img src=\"img/logo.png\" alt=\"logo\">--><a class=\"link\" data-url=\"/\">CrowdPress</a></h1>
+              </div><!-- brand -->
+              <a id=\"menu-toggle\" class=\"link\" data-url=\"/\"><i class=\"fa fa-bars fa-lg\"></i></a>
+              <nav>
+                <ul class=\"reset\" role=\"navigation\">
+                 <li class=\"menu-item\">
+                    <a class=\"link\" data-url=\"newrelease.html\">NewRelease</a>
+                  </li>
+                  <li class=\"menu-item\">
+                    <a class=\"link\" data-url=\"/\">ログイン</a>
+                  </li>
+                </ul>
+              </nav>
+            </div><!-- row-content -->
+          </div><!-- row -->
+    </header>
+    ";
+    return $html;
+  }
+   public function headerAfterLogin(){
+    $html = "";
+    $html .="        
+    <header role=\"banner\" class=\"transparent light\">
+            <div class=\"row\">
+                <div class=\"nav-inner row-content buffer-left buffer-right even clear-after\">
+                    <div id=\"brand\">
+                        <h1 class=\"reset\"><!--<img src=\"img/logo.png\" alt=\"logo\">--><a class=\"link\" data-url=\"/\">CrowdPress</a></h1>
+                    </div><!-- brand -->
+                    <a id=\"menu-toggle\" class=\"link\" data-url=\"/\"><i class=\"fa fa-bars fa-lg\"></i></a>
+                    <nav>
+                        <ul class=\"reset\" role=\"navigation\">
+                            <li class=\"menu-item\"><a class=\"link\" data-url=\"newrelease.html\">New Release</a></li>
+                            <li class=\"menu-item\"><a class=\"link\" data-url=\"scrap.html\">Scrap</a></li>
+                            <li class=\"menu-item\"><a class=\"link\" data-url=\"paper2.html\">My Feed</a></li>
+                            <li class=\"menu-item\"><a class=\"link\" data-url=\"mypage-pocket.html\">My Page</a></li>
+                            <li class=\"menu-item\"><a class=\"link\" data-url=\"/\">通知</a></li>
+                            <li class=\"menu-item\"><a class=\"link\" data-url=\"/\">設定</a>
+                                <ul class=\"sub-menu\">
+                                    <li><a class=\"link\" data-url=\"/\">マイプロフィール</a></li>
+                                    <li><a class=\"link\" data-url=\"/\">アカウント設定</a></li>
+                                    <li><a class=\"link\" data-url=\"/\">ログアウト</a></li>
+                                    <li>
+                                        <a class=\"link\" data-url=\"/\">サブメニュー</a>
+                                        <ul class=\"sub-menu\">
+                                            <li><a class=\"link\" data-url=\"/\">テスト01</a></li>
+                                            <li><a class=\"link\" data-url=\"/\">テスト02</a></li>
+                                            <li><a class=\"link\" data-url=\"/\">テスト03</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div><!-- row-content -->
+            </div><!-- row -->
+    </header>";
+    return $html;
+  }
   public function body($rid){
     $db = new DataBase();
     if($release_body = $db->select("release",array( "rid" => $rid , "flg" => 1))){
@@ -43,30 +112,31 @@ class Release
                       </section>
                       <div class=\"widget meta-social column half\">
                           <ul class=\"inline\">
-                              <li><a href=\"#\" class=\"twitter-share border-box \"><i class=\"fa fa-comment-o fa-lg\"></i></a></li>
-                              <li><a href=\"#\" class=\"facebook-share border-box\"><i class=\"fa fa-facebook fa-lg\"></i></a><span class=\"arrow_box\">22</span></li>
-                              <li><a href=\"#\" class=\"pinterest-share border-box\"><i class=\"fa fa-pinterest fa-lg\"></i></a><span class=\"arrow_box\">33</span></li>
-                              <li><a href=\"#\" class=\"check border-box\"><i class=\"fa fa-check-square-o fa-lg\"></i></a></li>
+                              <li><a href=\"#\" class=\"mycomment border-box \"><i class=\"fa fa-comment-o fa-lg\"></i></a></li>
+                              <li><a href=\"#\" class=\"clap border-box\"><i class=\"fa fa-facebook fa-lg\"></i></a><span class=\"arrow_box\">22</span></li>
+                              <li><a href=\"#\" class=\"scrap border-box\"><i class=\"fa fa-pinterest fa-lg\"></i></a><span class=\"arrow_box\">33</span></li>
                           </ul>
                       </div>
-                      <div class=\"column fourth right\">
+                      <div class=\"column half right last\">
                           <h5 class=\"meta-post\"><a href=\"#\">IT</a>, <a class=\"company-name cname\" href=\"#\">会社名</a> - <time class=\"time\" datetime=>リリース時刻</time></h5>
                       </div>
+                      <div class=\"clear\"></div>
                       <section cladd=\"line_wrapper\">
-                          <div class=\"question_Box\">
+                          <div class=\"question_Box inline\">
                               <div class=\"question_image column left\"><img src=\"img/facebook_image.jpg\" alt=\"facebookの写真\"/></div>
-                              <p class=\"arrow_question column ten reset\">
+                              <p class=\"arrow_question column ten reset inline-box\">
                               コメントコメントコメント
                               </p><!-- /.arrow_question -->
                           </div><!-- /.question_Box -->
+                          <div class=\"clear\"></div>
                       </section><!-- /.line_wrappaer -->
                   </div><!-- post-area -->
                   ";
     return $html;
   }
 
-  /*複数リリース*/
-  public function releaseBoxes($start=1, $repeat=1){
+  /*新着順複数リリース*/
+  public function latestReleaseBoxes($start=1, $repeat=1){
     $db = new DataBase();
     $html ="";
     for ($i=0; $i < $repeat; $i++) { 
@@ -78,7 +148,7 @@ class Release
   }
 
   /*コメント*/
-    public function commentArea($rid){//コメントエリア
+    public function commentArea($rid){//コメントエリア書き出し
       $db = new DataBase();
       $data = $db->selectCommentFromRid($rid);
       $html = "
@@ -96,7 +166,7 @@ class Release
       return $html;
     }
 
-    public function commentsNum($rid){//コメント数
+    public function commentsNum($rid){//コメント数取得
       $db = new DataBase();
       $data = $db->select("r_comment",array("rid"=>$rid));
       $num = count($data);

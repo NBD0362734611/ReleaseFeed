@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<?php  include("header.php") ?>
+
 <html lang="ja">
 
 	<head>
@@ -22,50 +24,7 @@
 	</head>
 
 	<body class="blog masonry-style">
-
-		<header role="banner" class="transparent light">
-			<div class="row">
-				<div class="nav-inner row-content buffer-left buffer-right even clear-after">
-					<div id="brand">
-						<h1 class="reset"><!--<img src="img/logo.png" alt="logo">--><a href="index.html">CrowdPress</a></h1>
-					</div><!-- brand -->
-					<a id="menu-toggle" href="#"><i class="fa fa-bars fa-lg"></i></a>
-					<nav>
-						<ul class="reset" role="navigation">
-							<li class="menu-item">
-								<a href="home-01.html">タイムライン</a>
-							</li>
-							<li class="menu-item">
-								<a href="works-4-columns.html">NewRelease</a>
-							</li>
-							<li class="menu-item">
-								<a href="blog-4-columns-masonry.html">お気に入り</a>
-							</li>
-							<li class="menu-item"><a href="resume.html">新聞を作る</a></li>
-							<li class="menu-item"><a href="resume.html">検索</a></li>
-							<li class="menu-item"><a href="resume.html">通知</a></li>
-							<li class="menu-item">
-								<a href="#">設定</a>
-								<ul class="sub-menu">
-									<li><a href="search.html">マイプロフィール</a></li>
-									<li><a href="no-results.html">アカウント設定</a></li>
-									<li><a href="page-not-found.html">ログアウト</a></li>
-									<li>
-										<a href="#">サブメニュー</a>
-										<ul class="sub-menu">
-											<li><a href="#">テスト01</a></li>
-											<li><a href="#">テスト02</a></li>
-											<li><a href="#">テスト03</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</nav>
-				</div><!-- row-content -->
-			</div><!-- row -->
-		</header>
-
+		<?= $release->header() ?>
 		<main role="main">
 
 			<div id="intro-wrap">
@@ -223,6 +182,7 @@
 		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		<script src="js/plugins.js"></script>
 		<script src="js/beetle.js"></script>
+		<script src="js/func.js"></script>
 		<script type="text/javascript" src="js/footerFixed.js"></script>
 
 	</body>
