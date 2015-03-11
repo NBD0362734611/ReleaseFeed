@@ -12,4 +12,6 @@ require_once("func/func.php");
 require_once("func/db_func.php");
 $release = new Release;
 $db = new DataBase;
+
+echo "<div id=\"fb-root\"></div>";
 ?>

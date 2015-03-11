@@ -6,14 +6,16 @@ class Release
   }
   public function header(){
     //ログイン状態によって分ける
-    //return $this->headerBeforeLogin();
-    return $this->headerAfterLogin();
+    $html = "<header role=\"banner\" class=\"transparent light\">";
+    $html .= $this->headerAfterLogin();
+    $html .= $this->headerBeforeLogin();
+    $html .= "</header>";
+    return $html;
   }
   public function headerBeforeLogin(){
         $html = "";
         $html .="
-        <header role=\"banner\" class=\"transparent light\">
-          <div class=\"row\">
+          <div class=\"row\" id=\"login-header\" style=\"display: none;\">
             <div class=\"nav-inner row-content buffer-left buffer-right even clear-after\">
               <div id=\"brand\">
                 <h1 class=\"reset\"><!--<img src=\"img/logo.png\" alt=\"logo\">--><a class=\"link\" data-url=\"/\">CrowdPress</a></h1>
@@ -25,21 +27,19 @@ class Release
                     <a class=\"link\" data-url=\"newrelease.html\">NewRelease</a>
                   </li>
                   <li class=\"menu-item\">
-                    <a class=\"link\" data-url=\"/\">ログイン</a>
+                    <a class=\"login-btn\">ログイン</a>
                   </li>
                 </ul>
               </nav>
             </div><!-- row-content -->
           </div><!-- row -->
-    </header>
-    ";
+          ";
     return $html;
   }
    public function headerAfterLogin(){
     $html = "";
     $html .="        
-    <header role=\"banner\" class=\"transparent light\">
-            <div class=\"row\">
+            <div class=\"row\"  id=\"logout-header\" style=\"display: none;\">
                 <div class=\"nav-inner row-content buffer-left buffer-right even clear-after\">
                     <div id=\"brand\">
                         <h1 class=\"reset\"><!--<img src=\"img/logo.png\" alt=\"logo\">--><a class=\"link\" data-url=\"/\">CrowdPress</a></h1>
@@ -56,7 +56,7 @@ class Release
                                 <ul class=\"sub-menu\">
                                     <li><a class=\"link\" data-url=\"/\">マイプロフィール</a></li>
                                     <li><a class=\"link\" data-url=\"/\">アカウント設定</a></li>
-                                    <li><a class=\"link\" data-url=\"/\">ログアウト</a></li>
+                                    <li><a class=\"link logout-btn\" data-url=\"index.html\"  >ログアウト</a></li>
                                     <li>
                                         <a class=\"link\" data-url=\"/\">サブメニュー</a>
                                         <ul class=\"sub-menu\">
@@ -71,7 +71,7 @@ class Release
                     </nav>
                 </div><!-- row-content -->
             </div><!-- row -->
-    </header>";
+            ";
     return $html;
   }
   public function body($rid){
@@ -94,13 +94,13 @@ class Release
     }
   }
   /*単体リリース*/
-  public function releaseBox($rid){
+  public function releaseBox($rid,$uid=0){
     $html ="";
     $html .= "
                   <div class=\"post-area clear-after release rid-add\" release-id=\"$rid\" >
                       <section role=\"main\" class=\"release1\">
                           <h3 class=\"release-title\">
-                          <a href=\"release-post.html\"><span class=\"title\">タイトル</span></a></h3>
+                          <a class=\"link\" data-url=\"release-post.html?rid=$rid\"><span class=\"title\">タイトル</span></a></h3>
                               <div class=\"portfolio-section preload\">
                                   <article class=\"item column fourth\">
                                   <figure><img class=\"img1\" src=\"\" alt=\"\"></figure>
