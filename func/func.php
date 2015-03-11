@@ -94,13 +94,13 @@ class Release
     }
   }
   /*単体リリース*/
-  public function releaseBox($rid){
+  public function releaseBox($rid,$uid=0){
     $html ="";
     $html .= "
                   <div class=\"post-area clear-after release rid-add\" release-id=\"$rid\" >
                       <section role=\"main\" class=\"release1\">
                           <h3 class=\"release-title\">
-                          <a href=\"release-post.html\"><span class=\"title\">タイトル</span></a></h3>
+                          <a class=\"link\" data-url=\"release-post.html?rid=$rid\"><span class=\"title\">タイトル</span></a></h3>
                               <div class=\"portfolio-section preload\">
                                   <article class=\"item column fourth\">
                                   <figure><img class=\"img1\" src=\"\" alt=\"\"></figure>
