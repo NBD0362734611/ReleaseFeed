@@ -6,6 +6,9 @@ jQuery(window).load(function () {
 	//addReleaseBox(4);
 
 });
+jQuery(document).on("click",'.link',function(){
+    location.href = jQuery(this).attr("data-url");
+});
 function addReleaseBox(repeat){
 	$.ajax({
 		url: '../ajax/get_release_box.php',

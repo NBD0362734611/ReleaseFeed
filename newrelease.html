@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+                
+<?php  include("header.php") ?>
+
 <html lang="ja">
         <head>
         <meta charset="utf-8">
@@ -22,48 +25,7 @@
 
     <body class="single single-post">
 
-        <header role="banner" class="transparent light">
-            <div class="row">
-                <div class="nav-inner row-content buffer-left buffer-right even clear-after">
-                    <div id="brand">
-                        <h1 class="reset"><!--<img src="img/logo.png" alt="logo">--><a href="index.html">CrowdPress</a></h1>
-                    </div><!-- brand -->
-                    <a id="menu-toggle" href="#"><i class="fa fa-bars fa-lg"></i></a>
-                    <nav>
-                        <ul class="reset" role="navigation">
-                            <li class="menu-item">
-                                <a href="home-01.html">タイムライン</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="works-4-columns.html">NewRelease</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="blog-4-columns-masonry.html">お気に入り</a>
-                            </li>
-                            <li class="menu-item"><a href="resume.html">新聞を作る</a></li>
-                            <li class="menu-item"><a href="resume.html">検索</a></li>
-                            <li class="menu-item"><a href="resume.html">通知</a></li>
-                            <li class="menu-item">
-                                <a href="#">設定</a>
-                                <ul class="sub-menu">
-                                    <li><a href="search.html">マイプロフィール</a></li>
-                                    <li><a href="no-results.html">アカウント設定</a></li>
-                                    <li><a href="page-not-found.html">ログアウト</a></li>
-                                    <li>
-                                        <a href="#">サブメニュー</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="#">テスト01</a></li>
-                                            <li><a href="#">テスト02</a></li>
-                                            <li><a href="#">テスト03</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div><!-- row-content -->
-            </div><!-- row -->
-        </header>
+        <?= $release->header()?>
 
         <main role="main">
 
@@ -73,51 +35,7 @@
                     <h2 class="newrelease">新着リリース</h1>
                         <div class="release-box"></div>
                 
-                        <?php 
-                         require_once("func/func.php");
-                         require_once("func/db_func.php");
-                         $release = new Release;
-                        echo $release->releaseBoxes(1, 50);
-                         
-                        ?>
-  <?php /*                      <div class="post-area clear-after release rid-add" >
-                    <h2 class="newrelease">新着リリース</h2>
-
-                        <div class="post-area clear-after">
-                            <section role="main" class="release1">
-                                <h3 class="release-title">
-                                <a href="release-post.html"><span class="title">タイトル</span></a></h3>
-                                    <div class="portfolio-section preload">
-                                        <article class="item column fourth">
-                                        <figure><img class="img1" src="img/dena.png" alt=""></figure>
-                                        </article>
-                                        <article class="item column fourth">
-                                        <figure><img class="img2" src="img/flat.jpg" alt=""></figure>
-                                        </article>
-                                    </div>
-                            </section>
-                            <div class="widget meta-social column half">
-                                <ul class="inline">
-                                    <li><a href="#" class="mycomment border-box"><i class="fa fa-comment-o fa-lg"></i></a></li>
-                                    <li><a href="#" class="clap border-box"><i class="fa fa-facebook fa-lg"></i></a><span class="arrow_box">クラップ数</span></li>
-                                    <li><a href="#" class="scrap border-box"><i class="fa fa-pinterest fa-lg"></i></a><span class="arrow_box">スクラップ数</span></li>
-                                </ul>
-                            </div>
-                            <div class="column half right last">
-                                <h5 class="meta-post"><a href="#">IT</a>, <a class="company-name" href="#">DeNA</a> - <time datetime="2013-11-09">2015-02-26</time></h5>
-                            </div>
-                            <div class="clear"></div>
-                            <section cladd="line_wrapper">
-                                <div class="question_Box inline">
-                                    <div class="question_image column inline-block"><img src="img/facebook_image.jpg" alt="facebookの写真"/></div>
-                                    <p class="arrow_question column ten reset inline-block">
-                                    自分のコメント
-                                    </p><!-- /.arrow_question -->
-                                </div><!-- /.question_Box -->
-                                <div class="clear"></div>
-                            </section><!-- /.line_wrappaer -->
-                        </div><!-- post-area -->
-*/ ?>
+                        <?= $release->latestReleaseBoxes(1, 50)?>
 
                 </div><!-- row-content -->
             </div><!-- row -->

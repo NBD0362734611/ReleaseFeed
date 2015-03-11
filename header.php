@@ -7,4 +7,9 @@ date_default_timezone_set('Asia/Tokyo');//タイムゾーン設定
 mb_language('Japanese');
 // 文字コード
 mb_internal_encoding('utf-8');
+
+require_once("func/func.php");
+require_once("func/db_func.php");
+$release = new Release;
+$db = new DataBase;
 ?>
