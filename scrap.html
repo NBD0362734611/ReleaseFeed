@@ -34,12 +34,28 @@
                     <button id="publish" class="button transparent" disabled="disabled">PUBLISH</button>
                 </form>
 
+                <div class="widget widget_search">
+                    <form role="search">
+                        <span class="pre-input"><i class="icon icon-search"></i></span>
+                        <input type="text" placeholder="検索..." value="" class="plain buffer">
+                    </form>
+                </div>
+
                 <dl class="sort-nav keep-left">
                     <dt>絞込み:</dt>
                     <dd class="filter active" data-filter="all"><a href="#all">全て</a></dd>
                     <dd class="filter" data-filter=".it"><a href="#it">IT</a></dd>
                     <dd class="filter" data-filter=".finance"><a href="#finance">金融</a></dd>
                     <dd class="filter" data-filter="."><a href="#">なんとか</a></dd>
+                </dl>
+                <div class="clear"></div>
+                <dl class="sort-nav keep-left">
+                    <dt>期間:</dt>
+                    <dd class="filter active" data-filter="all"><a href="#all">全期間</a></dd>
+                    <dd class="filter" data-filter=".1hour"><a href="#hour">１時間以内</a></dd>
+                    <dd class="filter" data-filter=".1day"><a href="#1day">１日以内</a></dd>
+                    <dd class="filter" data-filter=".1week"><a href="#1week">１週間以内</a></dd>
+                    <dd class="filter" data-filter=".1month"><a href="#1month">１ヶ月以内</a></dd>
                 </dl>
                 <div class="clear"></div>
                 <dl class="sort-nav keep-left">
@@ -201,11 +217,10 @@
         });
 
     //論評の表示非表示切り替え
-        $(function() {
             $('#toggle-edit1').click(function(){
             $('#paper_edit1').toggle(300);
             });
-        });
+
         </script>
 
     </body>
