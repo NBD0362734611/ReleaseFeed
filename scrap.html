@@ -29,10 +29,10 @@
             <div id="main" class="row">
                 <div class="row-content buffer">
 
-                <div id="scrap-bar" class="">
+                <form id="scrap-bar" class="">
                     <div id="checked-number">0個選択中</div>
-                    <a class="button transparent" href="#">PUBLISH</a>
-                </div>
+                    <button id="publish" class="button transparent" disabled="disabled">PUBLISH</button>
+                </form>
 
                 <dl class="sort-nav keep-left">
                     <dt>絞込み:</dt>
@@ -165,9 +165,17 @@
           if($count >= 5) {
             $not.attr("disabled",true);
             }else{
-          //5つ以下ならisabledを外す
+          //5つ以下ならdisabledを外す
             $not.attr("disabled",false);
             }
+
+          //チェックがない場合publishできない
+          if($count <= 0) {
+            $("#publish").prop("disabled", true);
+          }else{
+            $("#publish").prop("disabled", false);
+          }
+
          });
 
             $(function(){
