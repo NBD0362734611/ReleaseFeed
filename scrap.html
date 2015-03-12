@@ -165,22 +165,21 @@
           if($count >= 5) {
             $not.attr("disabled",true);
             }else{
-          //5つ以下ならdisabledを外す
+          //5つ以下ならisabledを外す
             $not.attr("disabled",false);
             }
 
-          //チェックがない場合publishできない
           if($count <= 0) {
             $("#publish").prop("disabled", true);
-          }else{
+            }else{
             $("#publish").prop("disabled", false);
-          }
+            }
 
          });
 
-            $(function(){
-                $('#edit1').bind('keyup',function() {
-                    for ( num=1; num<=1; num++ ) {
+        $(function(){
+            $('#edit1').bind('keyup',function() {
+                for ( num=1; num<=1; num++ ) {
                 //numはスクラップの数
                 var max = 256;
                 var min = 0;
@@ -197,15 +196,15 @@
                     $(".count" + num).css("color","");
                 }
                 $(".count" + num).html(256 - thisValueLength);
-            }
+                }
+            });
         });
-    });
 
     //論評の表示非表示切り替え
         $(function() {
             $('#toggle-edit1').click(function(){
             $('#paper_edit1').toggle(300);
-        });
+            });
         });
         </script>
 
