@@ -16,7 +16,44 @@
 /* Setting */
 
 .visibility_hidden {
- visibility: hidden; 
+ visibility: hidden;
+}
+
+/* Sort */
+.sort-nav {
+  display: block;
+  width: auto;
+  overflow: hidden;
+  margin: -0.25em 0 1.125em;
+  padding-top: 0.25em;
+  margin-right: 0;
+  margin-left: -0.5625em;
+}
+
+.sort-nav dt,
+.sort-nav dd {
+  display: inline;
+  margin-left: 0.5625em;
+  margin-bottom: 0.625em;
+  font-weight: normal;
+  font-size: 0.875em;
+}
+
+.sort-nav dt a,
+.sort-nav dd a {
+  color: #999999;
+  text-decoration: none;
+}
+
+.sort-nav dt.active a,
+.sort-nav dd.active a {
+  -webkit-border-radius: 1000px;
+  border-radius: 1000px;
+  font-weight: bold;
+  background: #2ba6cb;
+  padding: 0.1875em 0.5625em;
+  cursor: default;
+  color: white;
 }
 
 a.change {
