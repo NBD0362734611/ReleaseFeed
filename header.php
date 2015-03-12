@@ -14,4 +14,5 @@ $release = new Release;
 $db = new DataBase;
 
 echo "<div id=\"fb-root\"></div>";
+$uid = $_COOKIE["uid"];
 ?>

@@ -15,7 +15,7 @@ class Release
   public function headerBeforeLogin(){
         $html = "";
         $html .="
-          <div class=\"row\" id=\"login-header\" style=\"display: none;\">
+          <div class=\"row before-login-element\" style=\"display: none;\">
             <div class=\"nav-inner row-content buffer-left buffer-right even clear-after\">
               <div id=\"brand\">
                 <h1 class=\"reset\"><!--<img src=\"img/logo.png\" alt=\"logo\">--><a class=\"link\" data-url=\"/\">CrowdPress</a></h1>
@@ -39,7 +39,7 @@ class Release
    public function headerAfterLogin(){
     $html = "";
     $html .="        
-            <div class=\"row\"  id=\"logout-header\" style=\"display: none;\">
+            <div class=\"row after-login-element\" style=\"display: none;\">
                 <div class=\"nav-inner row-content buffer-left buffer-right even clear-after\">
                     <div id=\"brand\">
                         <h1 class=\"reset\"><!--<img src=\"img/logo.png\" alt=\"logo\">--><a class=\"link\" data-url=\"/\">CrowdPress</a></h1>
@@ -94,13 +94,13 @@ class Release
     }
   }
   /*単体リリース*/
-  public function releaseBox($rid,$uid=0){
+  public function releaseBox($rid){
     $html ="";
     $html .= "
-                  <div class=\"post-area clear-after release rid-add\" release-id=\"$rid\" >
+                  <div class=\"post-area clear-after release\" release-id=\"$rid\" >
                       <section role=\"main\" class=\"release1\">
                           <h3 class=\"release-title\">
-                          <a class=\"link\" data-url=\"release-post.html?rid=$rid\"><span class=\"title\">タイトル</span></a></h3>
+                          <a class=\"link\" data-url=\"release-post.html?rid=$rid\"><span class=\"title\"></span></a></h3>
                               <div class=\"portfolio-section preload\">
                                   <article class=\"item column fourth\">
                                   <figure><img class=\"img1\" src=\"\" alt=\"\"></figure>
@@ -112,20 +112,22 @@ class Release
                       </section>
                       <div class=\"widget meta-social column half\">
                           <ul class=\"inline\">
-                              <li><a href=\"#\" class=\"mycomment border-box \"><i class=\"fa fa-comment-o fa-lg\"></i></a></li>
-                              <li><a href=\"#\" class=\"clap border-box\"><i class=\"fa fa-facebook fa-lg\"></i></a><span class=\"arrow_box\">22</span></li>
-                              <li><a href=\"#\" class=\"scrap border-box\"><i class=\"fa fa-pinterest fa-lg\"></i></a><span class=\"arrow_box\">33</span></li>
+                              <li><a class=\"mycomment border-box \"><i class=\"fa fa-comment-o fa-lg\"></i></a></li>
+                              <li><a class=\"clap border-box\"><i class=\"fa fa-facebook fa-lg\"></i></a><span class=\"arrow_box\">22</span></li>
+                              <li><a class=\"scrap border-box\"><i class=\"fa fa-pinterest fa-lg\"></i></a><span class=\"arrow_box\">33</span></li>
+                              <li><a id=\"toggle-edit1\" class=\"edit border-box\"><i class=\"fa fa-pencil-square-o fa-lg\"></i></a></li>
+
                           </ul>
                       </div>
                       <div class=\"column half right last\">
-                          <h5 class=\"meta-post\"><a href=\"#\">IT</a>, <a class=\"company-name cname\" href=\"#\">会社名</a> - <time class=\"time\" datetime=>リリース時刻</time></h5>
+                          <h5 class=\"meta-post\"><a href=\"#\">IT</a>, <a class=\"company-name cname\" href=\"#\"></a> - <time class=\"time\" datetime=></time></h5>
                       </div>
                       <div class=\"clear\"></div>
-                      <section cladd=\"line_wrapper\">
+                      <section cladd=\"line_wrapper\" style=\"display: none;\">
                           <div class=\"question_Box inline\">
-                              <div class=\"question_image column left\"><img src=\"img/facebook_image.jpg\" alt=\"facebookの写真\"/></div>
+                              <div class=\"question_image column left\"><img class=\"my-pic\" src=\"\" alt=\"\"/></div>
                               <p class=\"arrow_question column ten reset inline-box\">
-                              コメントコメントコメント
+                              コメント
                               </p><!-- /.arrow_question -->
                           </div><!-- /.question_Box -->
                           <div class=\"clear\"></div>
@@ -141,6 +143,18 @@ class Release
     $html ="";
     for ($i=0; $i < $repeat; $i++) { 
           $rid = $db->getLatestReleaseId($start);
+          $start++;
+          $html .= $this->releaseBox($rid); 
+      }
+    return $html;
+  }
+
+    /*スクラップページリリース*/
+  public function scrapReleaseBoxes($start=1, $repeat=1,$uid=0){
+    $db = new DataBase();
+    $html ="";
+    for ($i=0; $i < $repeat; $i++) { 
+          $rid = $db->getScrapReleaseId($start,$uid);
           $start++;
           $html .= $this->releaseBox($rid); 
       }

@@ -39,7 +39,7 @@ class DataBase
 		}
 
 		$table = $this->escape($table);
-		$sql = "SELECT * FROM $this->db_name.$table WHERE flg=1 ";
+		$sql = "SELECT * FROM $this->db_name.$table WHERE 1=1 ";
 		if(!empty($array)){
 			foreach($array as $key => $value){
 				$key = $this->escape($key);
@@ -98,7 +98,7 @@ class DataBase
 			$count = 1;
 			$values = "";
 			foreach($a_value as $id => $value){
-				$key = $id->escape($id);
+				$key = $this->escape($id);
 				$vallue = $this->escape($value);
 				if($count == 1){
 					$values .= "`$id` = $value ";
@@ -115,7 +115,7 @@ class DataBase
 			$count = 1;
 			$keys = "";
 			foreach($a_key as $id => $value){
-				$key = $id->escape($id);
+				$key = $this->escape($id);
 				$vallue = $this->escape($value);
 				if($count == 1){
 					$keys .= "`$id` = $value ";
@@ -197,7 +197,26 @@ class DataBase
 		$order = "time";
 		$db = new DataBase();
 		$data = $db->select("$table", array("flg" => 1 ),$compare,$limit,$sort,$order);
-		return $data[0]["rid"];
+		if(!empty($data)){
+			return $data[0]["rid"];
+		}else{
+			return "";
+		}
+
+	}	
+	public function getScrapReleaseId($num=1,$uid=0){
+		$table = "r_scrap";
+		$compare = 0;
+		$limit = "".$num-1 ." , 1";
+		$sort = -1;
+		$order = "id";
+		$db = new DataBase();
+		$data = $db->select("$table", array("flg" => 1, "uid"=>$uid),$compare,$limit,$sort,$order);
+		if(!empty($data)){
+			return $data[0]["rid"];
+		}else{
+			return "";
+		}
 
 	}
 }
