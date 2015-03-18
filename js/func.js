@@ -2,6 +2,7 @@
 jQuery(window).load(function () {
 	var uid = getCookie("uid");
 	jQuery("#fb-root").attr("uid",uid) ;
+	jQuery(".comment-box").css("display","none") ;
 
 
 	// JavaScript SDKの読み込み
@@ -91,6 +92,35 @@ jQuery(document).on("click",'.scrap',function(){
 		}
 	});
 });
+
+//クラップ
+jQuery(document).on("click",'.clap',function(){
+	var clap = jQuery(this);
+	var rid = clap.closest(".release").attr("release-id");
+	var uid = jQuery("#fb-root").attr("uid");
+	var type = "r_clap";
+
+	jQuery.ajax({
+		url: '../ajax/scrap.php',
+		type:'POST',
+		dataType: 'json',
+		data : {'rid': rid,'uid':uid,'type':type},
+		timeout:1000,
+		success: function(data) {
+			
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		}
+	});
+});
+
+//コメント欄の表示・非表示
+ jQuery(document).on("click",".mycomment",function(){
+	var rid = jQuery(this).closest(".release").attr("release-id");
+    	var id  = "#comment-box-" + rid;
+	jQuery(id).toggle();
+ });
+
 
 function addReleaseBox(repeat){
 	jQuery.ajax({

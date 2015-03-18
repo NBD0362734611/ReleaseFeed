@@ -113,8 +113,8 @@ class Release
                       <div class=\"widget meta-social column half\">
                           <ul class=\"inline\">
                               <li><a class=\"mycomment border-box \"><i class=\"fa fa-comment-o fa-lg\"></i></a></li>
-                              <li><a class=\"clap border-box\"><i class=\"fa fa-facebook fa-lg\"></i></a><span class=\"arrow_box\">22</span></li>
-                              <li><a class=\"scrap border-box\"><i class=\"fa fa-pinterest fa-lg\"></i></a><span class=\"arrow_box\">33</span></li>
+                              <li><a class=\"clap border-box\"><i class=\"fa fa-facebook fa-lg\"></i></a><span class=\"arrow_box\">0</span></li>
+                              <li><a class=\"scrap border-box\"><i class=\"fa fa-pinterest fa-lg\"></i></a><span class=\"arrow_box\">0</span></li>
                               <li><a id=\"toggle-edit1\" class=\"edit border-box\"><i class=\"fa fa-pencil-square-o fa-lg\"></i></a></li>
 
                           </ul>
@@ -123,15 +123,22 @@ class Release
                           <h5 class=\"meta-post\"><a href=\"#\">IT</a>, <a class=\"company-name cname\" href=\"#\"></a> - <time class=\"time\" datetime=></time></h5>
                       </div>
                       <div class=\"clear\"></div>
-                      <section cladd=\"line_wrapper\" style=\"display: none;\">
-                          <div class=\"question_Box inline\">
-                              <div class=\"question_image column left\"><img class=\"my-pic\" src=\"\" alt=\"\"/></div>
-                              <p class=\"arrow_question column ten reset inline-box\">
-                              コメント
-                              </p><!-- /.arrow_question -->
-                          </div><!-- /.question_Box -->
-                          <div class=\"clear\"></div>
-                      </section><!-- /.line_wrappaer -->
+                      <div class=\"comment-box\" id=\"comment-box-$rid\">
+                        <section class=\"ine_wrapper\">
+                            <div class=\"question_Box inline\">
+                                <div class=\"question_image column left\"><img class=\"my-pic\" src=\"\" alt=\"\"/></div>
+                                <p class=\"arrow_question column ten reset inline-box\">
+                                </p><!-- /.arrow_question -->
+                                                                <input id=\"comment-$rid\" type=\"text\" style=\"display: block;
+  padding: 0px 0px;
+  width: 220px;
+  height: 102px;
+  border: none;
+  margin-bottom: 0px;  font-size: 200%;;\" >
+                            </div><!-- /.question_Box -->
+                            <div class=\"clear\"></div>
+                          </section><!-- /.line_wrappaer -->
+                        </div>
                   </div><!-- post-area -->
                   ";
     return $html;
