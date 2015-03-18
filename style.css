@@ -13,6 +13,26 @@
     General Rules
 ----------------------------------------------------------------*/
 
+/*----------------------------------------------------------------
+    MY FEED
+----------------------------------------------------------------*/
+
+a.full-paper {
+    color: #04C2EB;
+}
+
+.myfeed-wrapper {
+  position: relative;
+  background: white;
+  margin: 3em auto;
+  padding: 0 1em;
+  max-width: 600px;
+}
+
+.myfeed p {
+	font-size:0.9em;
+}
+
 /* Setting */
 
 .visibility_hidden {
@@ -5541,7 +5561,7 @@ footer .row-content.buffer {
 
 @media handheld,only screen and (max-width:48em) {
     body {
-        font-size: 0.9em;
+        font-size: 0.8em;
         -webkit-text-size-adjust: none;
         padding-top: 0px !important;
     }
