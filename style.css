@@ -273,11 +273,23 @@ p.speech {
     min-height: 100px;
 }
 
-.release-article figure {
-    max-width: 45%;
+@media handheld,only screen and (min-width:48em) {
+	.release-article figure {
+    	max-width: 45%;
+	}
 }
 .release-article figcaption {
     font-size: 0.778em;
+}
+
+@media handheld,only screen and (max-width:48em) {
+    .release-article .column.half{
+        float: none !important;
+        clear: both !important;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+        width: auto !important;
+    }
 }
 
 /*マイページ*/
