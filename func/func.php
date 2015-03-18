@@ -101,6 +101,7 @@ class Release
                       <section role=\"main\" class=\"release1\">
                           <h3 class=\"release-title\">
                           <a class=\"link\" data-url=\"release-post.html?rid=$rid\"><span class=\"title\"></span></a></h3>
+                          </h3><input type=\"checkbox\" id=\"$rid\"><label for=\"$rid\"></label>
                               <div class=\"portfolio-section preload\">
                                   <article class=\"item column fourth\">
                                   <figure><img class=\"img1\" src=\"\" alt=\"\"></figure>
