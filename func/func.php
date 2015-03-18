@@ -130,16 +130,17 @@ class Release
                                 <div class=\"question_image column left\"><img class=\"my-pic\" src=\"\" alt=\"\"/></div>
                                 <p class=\"arrow_question column ten reset inline-box\">
                                 </p><!-- /.arrow_question -->
-                                                                <input id=\"comment-$rid\" type=\"text\" style=\"display: block;
-  padding: 0px 0px;
-  width: 220px;
-  height: 102px;
-  border: none;
-  margin-bottom: 0px;  font-size: 200%;;\" >
+                                <input id=\"comment-$rid\" type=\"text\" style=\"display: block;\" >
                             </div><!-- /.question_Box -->
                             <div class=\"clear\"></div>
                           </section><!-- /.line_wrappaer -->
                         </div>
+                        <form id=\"paper_edit1\" style=\"display:none\">
+                          <textarea name=\"edit1\" id=\"edit1\" class=\"edit inline\"></textarea>
+                          <span class=\"count1\">256</span>
+                          <input type=\"button\" id=\"paper_comment1\" value=\"確定\">
+                          <input type=\"button\" id=\"edit_paper_comment1\"value=\"編集\" class=\"btn_edit\"></input>
+                        </form>
                   </div><!-- post-area -->
                   ";
     return $html;
