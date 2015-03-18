@@ -274,9 +274,7 @@ p.speech {
 }
 
 .release-article figure {
-    float: right;
-    max-width: 50%;
-    width: 400px;
+    max-width: 45%;
 }
 .release-article figcaption {
     font-size: 0.778em;
