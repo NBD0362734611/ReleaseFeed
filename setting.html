@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php  include("header.php") ?>
 <html lang="en">
 
 	<head>
@@ -46,7 +47,6 @@
 							<lavel class="setting-item">
 								<div>
 									<strong>ユーザー名</strong>
-
 								</div>
 								<div id="user_name">
 									Wataru
@@ -55,7 +55,6 @@
 							<lavel class="setting-item">
 								<div>
 									<strong>メールアドレス</strong>
-
 								</div>
 								<div id="mail_address">
 									sakamoto@alue.co.jp
@@ -127,8 +126,7 @@
 			</div><!-- id-main -->
 		</main><!-- main -->
 
-		<footer></footer>
-
+        <footer  role="contentinfo" id="footer"></footer>
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="js/plugins.js"></script>
 		<script src="js/beetle.js"></script>
@@ -143,34 +141,49 @@
             alert("値を入力してください");
           }
           else{
-            alert(e.value);
-          }
-        });
-
-        var option2 = {trigger : $("#user_name_change"), action : "click"};
-        $("#user_name").editable(option2, function(e){
-          if(e.value===''){
-            $("#user_name").html(e.old_value);
-            alert("値を入力してください");
-          }
-          else{
-            alert(e.value);
-          }
-        });
-
-        var option3 = {trigger : $("#mail_address_change"), action : "click"};
-        $("#mail_address").editable(option3, function(e){
-          if(!e.value.match(/^(?:(?:(?:(?:[a-zA-Z0-9_!#\$\%&'*+/=?\^`{}~|\-]+)(?:\.(?:[a-zA-Z0-9_!#\$\%&'*+/=?\^`{}~|\-]+))*)|(?:"(?:\\[^\r\n]|[^\\"])*")))\@(?:(?:(?:(?:[a-zA-Z0-9_!#\$\%&'*+/=?\^`{}~|\-]+)(?:\.(?:[a-zA-Z0-9_!#\$\%&'*+/=?\^`{}~|\-]+))*)|(?:\[(?:\\\S|[\x21-\x5a\x5e-\x7e])*\])))$/)){
-            $("#mail_address").html(e.old_value);
-            alert("正しいメールアドレスを入力してください");
-          }
-          else{
-            alert(e.value);
+            var upapername = e.value;
           }
         });
 
       });
-    </script>
+
+    jQuery("button#change_save").click(function() {
+
+    var button = $(this);
+    button.attr("disabled", true);
+    var data = {
+        uid: jQuery("#fb-root").attr("uid"),
+        upapername: jQuery("#paper_name").text(),
+        uname: jQuery("#user_name").text(),
+        uemail: jQuery("#mail_address").text(),
+        type: "uinfo"
+    };
+
+    jQuery.ajax({
+        type:'POST',
+        url: 'ajax/setting.php',
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function(json_data) {   // OK時
+            // JSON Arrayの先頭が成功フラグ、失敗の場合2番目がエラーメッセージ
+            if (!json_data[0]) {    // サーバが失敗を返した場合
+                console.log(json_data);
+                alert("Transaction error. " + json_data[1]);
+                return;
+            }
+            // 成功時処理
+            location.reload();
+        },
+        error: function() {         // HTTPエラー時
+            alert("Server Error. Pleasy try again later.");
+        },
+        complete: function() {      // 成功・失敗に関わらず通信が終了した際の処理
+            button.attr("disabled", false);  // ボタンを再び enableにする
+        }
+    });
+});
+</script>
 
 	</body>
 
