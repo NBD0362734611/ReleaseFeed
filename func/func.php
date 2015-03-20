@@ -130,7 +130,7 @@ class Release
                                 <div class=\"question_image column left\"><img class=\"my-pic\" src=\"\" alt=\"\"/></div>
                                 <p class=\"arrow_question column ten reset inline-box\">
                                 </p><!-- /.arrow_question -->
-                                <input id=\"comment-$rid\" type=\"text\" style=\"display: block;\" >
+                                <input class=\"comment-input\" rid=\"$rid\"  id=\"comment-$rid\" type=\"text\" style=\"display: block;\" >
                             </div><!-- /.question_Box -->
                             <div class=\"clear\"></div>
                           </section><!-- /.line_wrappaer -->

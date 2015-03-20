@@ -240,3 +240,27 @@ function getCookie(name)
     }
     return result;
 }
+ jQuery(document).on('keypress',".comment-input",function (e) {
+    if(e.keyCode == 13) {
+      var rid = jQuery(this).attr("rid");
+      var uid = jQuery("#fb-root").attr("uid");
+      var comment = jQuery(this).val();
+      if(comment.length > 140){
+        alert("投稿できる文字数は１４０文字までです");
+      }else{
+      	jQuery.ajax({
+		url: '../ajax/comment.php',
+		type:'POST',
+		dataType: 'json',
+		data : {'uid':uid,'rid':rid,'comment':comment},
+		timeout:1000,
+		success: function() {
+			alert();
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		}
+	});
+    	e.preventDefault();
+      }
+    }
+  });

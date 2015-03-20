@@ -84,6 +84,7 @@ class DataBase
 			return false;
 		}
 		$sql = "INSERT INTO $this->db_name.$table ($keys) VALUES ($values)";
+		var_dump($sql);
 		$results = mysql_query($sql);
 		if($results){
 			return true;
