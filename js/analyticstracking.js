@@ -1,11 +1,13 @@
-//googleトラッキングコード
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56013439-2', 'auto');
-  ga('send', 'pageview');
-
-</script>
+(function(w,d){
+    w._gaq=[["_setAccount","UA-56013439-2"],["_trackPageview"]];
+    w.___gcfg={lang:"ja"};
+    var s,e = d.getElementsByTagName("script")[0],
+    a=function(u,f){if(!d.getElementById(f)){s=d.createElement("script");
+    s.async=!0;s.src=u;if(f){s.id=f;}e.parentNode.insertBefore(s,e);}};
+    a(("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js","ga");
+    a("https://apis.google.com/js/plusone.js");
+    a("//b.st-hatena.com/js/bookmark_button_wo_al.js");
+    a("//platform.twitter.com/widgets.js","twitter-wjs");
+    a("//connect.facebook.net/ja_JP/all.js#xfbml=1","facebook-jssdk");
+    a("https://widgets.getpocket.com/v1/j/btn.js?v=1");
+})(this, document);
