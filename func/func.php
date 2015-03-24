@@ -15,7 +15,7 @@ class Release
   public function headerBeforeLogin(){
         $html = "";
         $html .="
-                <div class=\"row\"  id=\"logout-header\" style=\"display: none;\">
+                <div class=\"row before-login-element\">
                   <div class=\"nav-inner row-content buffer-left buffer-right even clear-after\">
                     <div id=\"brand\">
                         <h1 class=\"reset\"><!--<img src=\"img/logo.png\" alt=\"logo\">--><a class=\"link\" data-url=\"/\">CrowdPress</a></h1>
