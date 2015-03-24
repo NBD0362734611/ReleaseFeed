@@ -32,7 +32,7 @@
 						<div class="caption">
 							<h2>あなただけの新聞を発行しよう</h2>
 							<p></p>
-							<a class="button white transparent login-btn before-login-element" style="display: none;">Facebookではじめる（無料）</a>
+							<a class="button white transparent login-btn before-login-element">Facebookではじめる（無料）</a>
 							<a class="button white transparent after-login-element link" style="display: none;" data-url="newrelease.html">リリースを見てみる（無料）</a>
 						</div>
 					</div>
@@ -61,58 +61,80 @@
 			</div><!-- id-main -->
 		</main><!-- main -->
 
-		<div id="footer">
-		<footer role="contentinfo">
+		<footer role="contentinfo" id="footer">
 			<div class="row">
 				<div class="row-content buffer clear-after">
 					<section id="top-footer">
-						<div class="widget column three"><!-- la class="widget" è forse generata utomaticamente da wp -->
-							<h4>Menu</h4>
+						<div class="widget column three">
+							<h4>About Us</h4>
 							<ul class="plain">
-								<li><a href="home-01.html">Home</a></li>
-								<li><a href="works-3-columns.html">Portfolio</a></li>
-								<li><a href="blog-4-columns-masonry.html">Blog</a></li>
-								<li><a href="resume.html">Resume</a></li>
-								<li><a href="file:///Users/pasqualevitiello/My%20Folder/Job/Envato/PR%20Themeforest/Flattie/Markup/Beetle/contact.html">Contact</a></li>
+								<li><a href="#">About Us</a></li>
+								<li><a href="#">About Service</a></li>
+								<li><a href="#">User Manual</a></li>
 							</ul>
 						</div>
 						<div class="widget column three">
-							<h4>Archives</h4>
+							<h4>Policy</h4>
 							<ul class="plain">
-								<li><a href="#">March 2014</a></li>
-								<li><a href="#">April 2014</a></li>
-								<li><a href="#">May 2014</a></li>
-								<li><a href="#">June 2014</a></li>
-								<li><a href="#">July 2014</a></li>
+								<li><a href="privacy.html">Privacy Policy</a></li>
+								<li><a href="terms.html">会員規約</a></li>
 							</ul>
 						</div>
 						<div class="widget column three">
-							<h4>Widget</h4>
-							<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+							<h4>Other</h4>
+							<ul class="plain">
+								<li><a href="faq.html">FAQ</a></li>
+								<li><a href="contact.html">問い合わせ</a></li>
+								<li><a href="#">Blog</a></li>
+							</ul>
 						</div>
 						<div class="widget meta-social column three">
 							<h4>Follow Us</h4>
-							<ul class="inline">
-								<li><a href="#" class="twitter-share border-box"><i class="fa fa-twitter fa-lg"></i></a></li>
-								<li><a href="#" class="facebook-share border-box"><i class="fa fa-facebook fa-lg"></i></a></li>
-								<li><a href="#" class="pinterest-share border-box"><i class="fa fa-pinterest fa-lg"></i></a></li>
-							</ul>
+							<!-- Twitter -->
+							<div class="social">
+								<a href="https://twitter.com/share" class="twitter-share-button"
+								data-lang="ja"
+								data-url="http://crowdpress.jp/"
+								data-text="CrowdPressをツイートする"
+								data-via="me"
+								>Tweet</a>
+							</div>
+
+							<!-- Facebook -->
+							<div class="social">
+								<div id="fb-root"></div>
+								<div class="fb-like"
+								data-href="http://example.com/"
+								data-layout="button_count"
+								data-send="false"
+								data-width="120"
+								data-show-faces="false">
+								</div>
+							</div>
+
+							<div class="g-plusone" data-size="medium" data-href="http://crowdpress.jp/"></div>
+							<!-- Pocket -->
+							<div class="social">
+								<a href="https://getpocket.com/save" class="pocket-btn" data-lang="ja"
+								data-save-url="http://crowdpress.jp/"
+								data-pocket-count="horizontal"
+								data-pocket-align="left"
+								>Pocket</a>
+							</div>
 						</div>
 					</section><!-- top-footer -->
 					<section id="bottom-footer">
-						<p class="keep-left">&copy; 2014 <a href="http://mokaine.com/" alt="Mokaine Lab">Mokaine</a>. All Rights Reserved.</p>
-						<p class="keep-right">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+						<p class="keep-left">&copy; 2015 CrowdPress作成委員会.</p>
 					</section><!-- bottom-footer -->
 				</div><!-- row-content -->
 			</div><!-- row -->
 		</footer>
-		</div>
 
 		<script src="https://code.jquery.com/jquery.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		<script src="js/plugins.js"></script>
 		<script src="js/beetle.js"></script>
 		<script src="js/func.js"></script>
+		<script src="js/analyticstracking.js"></script>
 
 	</body>
 
