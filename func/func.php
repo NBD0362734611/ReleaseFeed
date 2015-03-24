@@ -15,30 +15,30 @@ class Release
   public function headerBeforeLogin(){
         $html = "";
         $html .="
-          <div class=\"row before-login-element\" style=\"display: none;\">
-            <div class=\"nav-inner row-content buffer-left buffer-right even clear-after\">
-              <div id=\"brand\">
-                <h1 class=\"reset\"><!--<img src=\"img/logo.png\" alt=\"logo\">--><a class=\"link\" data-url=\"/\">CrowdPress</a></h1>
-              </div><!-- brand -->
-              <a id=\"menu-toggle\" class=\"link\" data-url=\"/\"><i class=\"fa fa-bars fa-lg\"></i></a>
-              <nav>
-                <ul class=\"reset\" role=\"navigation\">
-                 <li class=\"menu-item\">
-                    <a class=\"link\" data-url=\"newrelease.html\">NewRelease</a>
-                  </li>
-                  <li class=\"menu-item\">
-                    <a class=\"login-btn\">ログイン</a>
-                  </li>
-                </ul>
-              </nav>
-            </div><!-- row-content -->
-          </div><!-- row -->
+                <div class=\"row\"  id=\"logout-header\" style=\"display: none;\">
+                  <div class=\"nav-inner row-content buffer-left buffer-right even clear-after\">
+                    <div id=\"brand\">
+                        <h1 class=\"reset\"><!--<img src=\"img/logo.png\" alt=\"logo\">--><a class=\"link\" data-url=\"/\">CrowdPress</a></h1>
+                    </div><!-- brand -->
+                    <a id=\"menu-toggle\" class=\"link\" data-url=\"/\"><i class=\"fa fa-bars fa-lg\"></i></a>
+                    <nav>
+                        <ul class=\"reset\" role=\"navigation\">
+                            <li class=\"menu-item\"><a class=\"link\" data-url=\"newrelease.html\">New Release</a></li>
+                            <li class=\"menu-item visibility_hidden\"><a class=\"link\" data-url=\"scrap.html\">Scrap</a></li>
+                            <li class=\"menu-item visibility_hidden\"><a class=\"link\" data-url=\"paper2.html\">My Feed</a></li>
+                            <li class=\"menu-item visibility_hidden\"><a class=\"link\" data-url=\"mypage-pocket.html\">My Page</a></li>
+                            <li class=\"menu-item visibility_hidden\"><a class=\"link\" data-url=\"/\">通知</a></li>
+                            <li class=\"menu-item\"><a class=\"login-btn\">ログイン</a></li>
+                        </ul>
+                    </nav>
+                </div><!-- row-content -->
+            </div><!-- row -->
           ";
     return $html;
   }
    public function headerAfterLogin(){
     $html = "";
-    $html .="        
+    $html .="
             <div class=\"row after-login-element\" style=\"display: none;\">
                 <div class=\"nav-inner row-content buffer-left buffer-right even clear-after\">
                     <div id=\"brand\">
@@ -150,10 +150,10 @@ class Release
   public function latestReleaseBoxes($start=1, $repeat=1){
     $db = new DataBase();
     $html ="";
-    for ($i=0; $i < $repeat; $i++) { 
+    for ($i=0; $i < $repeat; $i++) {
           $rid = $db->getLatestReleaseId($start);
           $start++;
-          $html .= $this->releaseBox($rid); 
+          $html .= $this->releaseBox($rid);
       }
     return $html;
   }
@@ -162,10 +162,10 @@ class Release
   public function scrapReleaseBoxes($start=1, $repeat=1,$uid=0){
     $db = new DataBase();
     $html ="";
-    for ($i=0; $i < $repeat; $i++) { 
+    for ($i=0; $i < $repeat; $i++) {
           $rid = $db->getScrapReleaseId($start,$uid);
           $start++;
-          $html .= $this->releaseBox($rid); 
+          $html .= $this->releaseBox($rid);
       }
     return $html;
   }
@@ -244,9 +244,9 @@ class Release
 
 
   private function br($repeat = 1){
-    for ($i=0; $i < $repeat; $i++) { 
+    for ($i=0; $i < $repeat; $i++) {
       echo "<br>";
     }
-  } 
-}  
+  }
+}
 ?>
