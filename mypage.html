@@ -34,7 +34,8 @@
 							<p class="thumb">
 								Profile画像
 							</p>
-							<h2 id="username">Wataru新聞</h2>
+							<h2 class="paper_name">Wataru新聞</h2>
+                            <h5 class="user_name">Wataru Sakamoto</h5>
 							<p>ぼくの作ったさいきょうのしんぶんを公開します。</p>
 							<a class="button white transparent" href="#">購読する</a>
 							<div class="widget meta-social text-light">
@@ -69,70 +70,45 @@
 			</div><!-- intro-wrap -->
 
 			<div id="main" class="row">
-				<div class="row-content buffer clear-after">
-				<div class="grid-items preload">
-						<article class="item column six">
-							<a href="#">
-								<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
-								<div class="blog-excerpt">
-									<div class="blog-excerpt-inner">
-										<h5 class="meta-post">Interior design</h5>
-										<h2>新聞１</h2>
-									</div><!-- blog-excerpt -->
-								</div><!-- blog-excerpt-inner -->
-							</a>
-						</article>
+                <div class="row-content buffer clear-after">
 
-						<article class="item column six">
-							<a href="#">
-								<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
-								<div class="blog-excerpt">
-									<div class="blog-excerpt-inner">
-										<h5 class="meta-post">Photography, Instagram</h5>
-										<h2>新聞２</h2>
-									</div><!-- blog-excerpt -->
-								</div><!-- blog-excerpt-inner -->
-							</a>
-						</article>
+                    <div class="post-area clear-after myfeed-wrapper">
+                        <article role="main">
+                            <div class="question_image column inline-block"><img src="img/facebook_image.jpg" alt="facebookの写真"/></div>
+                            <div class="colmn inline-block">
+                                <h5 class="meta-post"><a href="mypage-pocket.html">Wataru新聞第27号</a> | <a href="#">タグ１</a>, <a href="#">タグ２</a> - <time datetime="2013-11-09">2015-02-26</time></h5>
+                            </div>
+                            <section class="myfeed" class="row section">
+                                <h2 class="paper-subtitle">ヘッドライン</h2>
+                                <div class="release-article">
+                                    <p class="release">
+                                    ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ…<a class="full-paper" href="paper.html">この新聞を読む</a>
+                                    </p>
+                                    <figure class="column half">
+                                        <img src="img/flat.jpg">
+                                        <figcaption>DeNA、社員同士で名前は内緒の企業内クローズド匿名SNS「フラット」を提供開始</figcaption>
+                                    </figure>
+                                    <figure class="column half">
+                                        <img src="img/dena.png">
+                                        <figcaption>ユーザー設定画像</figcaption>
+                                    </figure>
+                                </div>
+                            </section>
+                        </article>
 
-						<article class="item column six">
-							<a href="#">
-								<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
-								<div class="blog-excerpt">
-									<div class="blog-excerpt-inner">
-										<h5 class="meta-post">Interior design</h5>
-										<h2>新聞３</h2>
-									</div><!-- blog-excerpt -->
-								</div><!-- blog-excerpt-inner -->
-							</a>
-						</article>
+                    </div><!-- post-area -->
 
-						<article class="item column six">
-							<a href="#">
-								<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
-								<div class="blog-excerpt">
-									<div class="blog-excerpt-inner">
-										<h5 class="meta-post">Photography, Instagram</h5>
-										<h2>新聞４</h2>
-									</div><!-- blog-excerpt -->
-								</div><!-- blog-excerpt-inner -->
-							</a>
-						</article>
-						<div class="shuffle-sizer three"></div>
-					</div><!-- grid-items -->
-					<div id="pagination">
-						<ul class="clear-after reset plain">
-							<li id="older" class="pagination-nav"><a href="#" class="button transparent aqua"><i class="fa fa-chevron-left"></i><span class="label">戻る</span></a></li>
-							<li id="newer" class="pagination-nav"><a href="#" class="button transparent aqua"><span class="label">次へ</span><i class="fa fa-chevron-right"></i></a></li>
-						</ul>
-					</div>
-				</div><!-- row-content -->
-			</div><!-- row -->
-		</main><!-- main -->
+                        <div id="pagination">
+                        <ul class="clear-after reset plain">
+                            <li id="older" class="pagination-nav"><a href="#" class="button transparent aqua"><i class="fa fa-chevron-left"></i><span class="label">戻る</span></a></li>
+                            <li id="newer" class="pagination-nav"><a href="#" class="button transparent aqua"><span class="label">次へ</span><i class="fa fa-chevron-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div><!-- row-content -->
+            </div><!-- row -->
+        </main><!-- main -->
 
-
-		<div id="footer">
-		<footer role="contentinfo">
+		<footer role="contentinfo" id="footer">
 			<div class="row">
 				<div class="row-content buffer clear-after">
 					<section id="top-footer">
@@ -176,7 +152,6 @@
 				</div><!-- row-content -->
 			</div><!-- row -->
 		</footer>
-		</div>
 
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
